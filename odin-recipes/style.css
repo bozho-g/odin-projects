@@ -1,0 +1,247 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#index {
+    background-image: url(images/background.png);
+    background-size: auto;
+}
+
+
+.title {
+    text-align: center;
+    color: #4B2E2E;
+}
+
+.recipe {
+    display: inline-block;
+    box-sizing: border-box;
+    border: #4B2E2E solid 4px;
+    background-color: burlywood;
+    width: 400px;
+    text-align: center;
+    margin: 10px;
+    color: #7B3F3F;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
+.recipe:hover {
+    transform: scale(1.02);
+}
+
+.recipe img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.container {
+    text-align: center;
+    position: relative;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+/* chicken */
+#chicken {
+    background-image: url(images/chicken.png);
+}
+
+#chicken-pic {
+    border-radius: 25px;
+    display: block;
+    margin: auto;
+}
+
+.wrapper {
+    box-sizing: border-box;
+    width: 600px;
+    margin: auto;
+    color: #312121;
+}
+
+.wrapper h2,
+.wrapper p {
+    text-align: center;
+}
+
+.home {
+    position: fixed;
+    background-color: #D2691E;
+    padding: 15px;
+    text-decoration: none;
+    border: black solid 3px;
+    color: #FFF8DC;
+    top: 20px;
+}
+
+.home:hover {
+    background-color: #e65c00;
+}
+
+/* hawaiian rolls */
+
+#rolls {
+    background-color: #4F200D;
+}
+
+#rolls-pic {
+    width: 400px;
+    margin: auto;
+    display: block;
+    border-radius: 25px;
+}
+
+.rolls-wrap {
+    box-sizing: border-box;
+    background-color: #FF9A00;
+    border: #FFD93D 15px solid;
+    border-radius: 30px;
+    margin-top: 30px;
+    width: 900px;
+    position: absolute;
+    padding: 15px;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.rolls-wrap h2,
+.rolls-wrap h1 {
+    text-align: center;
+    color: #F6F1E9;
+
+}
+
+.squishy {
+    position: relative;
+    font-size: 1.875rem;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 250ms;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.squishy i {
+    width: 1.75rem;
+    height: 1.75rem;
+}
+
+.squishy-classic {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #FF9A00;
+    color: #242424;
+    border-radius: 0.4rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    box-shadow:
+        inset 0 1px 0 0 #FFA733,
+        0 1px 0 0 #FF9500,
+        0 2px 0 0 #FF8A00,
+        0 4px 0 0 #FF7E00,
+        0 5px 0 0 #FF7300,
+        0 6px 0 0 #FF6600,
+        0 7px 0 0 #FF5500,
+        0 7px 8px 0 #CC4400;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.squishy-classic:hover {
+    transform: translateY(4px);
+    box-shadow:
+        inset 0 1px 0 0 #FFA733,
+        0 1px 0 0 #FF9500,
+        0 1px 0 0 #FF8A00,
+        0 2px 0 0 #FF7E00,
+        0 2px 0 0 #FF7300,
+        0 3px 0 0 #FF6600,
+        0 4px 0 0 #FF5500,
+        0 4px 6px 0 #CC4400;
+}
+
+/* steak */
+
+#ribeye {
+    background-image: url('https://images.unsplash.com/photo-1546484396-fb3fc6f95f98?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+}
+
+#ribeye::after {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.5) 100%);
+    pointer-events: none;
+}
+
+.ribeye-wrap {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+#ribeye-pic {
+    width: 400px;
+    border-radius: 25px;
+    margin: auto;
+    display: block;
+}
+
+.ribeye-wrap h1,
+.ribeye-wrap h2 {
+    text-align: center;
+    color: #FFC857;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+.ribeye-wrap p,
+.ribeye-wrap li {
+    color: #FAF3E0;
+    line-height: 1.6;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.steak-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    margin: 10px;
+
+    background: linear-gradient(145deg, #FF8C00, #FFB347);
+    color: #242424;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+    display: inline-block;
+}
+
+.steak-button:hover {
+    transform: translateY(3px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.steak-button:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
