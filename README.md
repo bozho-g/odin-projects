@@ -15,3 +15,7 @@ This repository contains projects from The Odin Project curriculum. Below is a b
 ### 3. Rock Paper Scissors
 - Description: A simple Rock Paper Scissors game implemented in JavaScript.
 - Live Demo: https://frosty0420.github.io/odin-projects/rock-paper-scissors/
+
+### 4. Etch a Sketch
+- Description: A digital version of the classic Etch a Sketch toy, allowing users to draw on a grid.
+- Live Demo: https://frosty0420.github.io/odin-projects/etch-a-sketch/
