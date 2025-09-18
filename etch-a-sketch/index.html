@@ -10,10 +10,30 @@
 </head>
 
 <body>
-    <div class="container">
-
-    </div>
-    <button id="changeBtn">Change Grid Size</button>
+    <header class="site-header">
+        <h1>Etch A Sketch</h1>
+    </header>
+    <main class="workspace">
+        <section class="board-wrapper">
+            <div class="container"></div>
+        </section>
+        <aside class="controls" aria-label="Drawing Controls">
+            <div class="control-group">
+                <label class="group-label">Grid</label>
+                <button id="changeBtn">Change Size</button>
+                <button id="clear">Clear</button>
+            </div>
+            <div class="control-group">
+                <label class="group-label">Mode</label>
+                <button id="modeToggle" data-mode="color">Mode: Color</button>
+                <button id="eraseToggle">Erasing: Off</button>
+            </div>
+            <div class="control-group">
+                <label for="colorPicker" class="group-label">Color</label>
+                <input type="color" id="colorPicker" value="#000000" title="Pick draw color" />
+            </div>
+        </aside>
+    </main>
 </body>
 
 </html>

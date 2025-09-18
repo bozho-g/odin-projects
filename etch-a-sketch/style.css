@@ -5,25 +5,202 @@
 }
 
 body {
+    font-family: system-ui, Arial, sans-serif;
+    min-height: 100vh;
     display: flex;
+    flex-direction: column;
+    background: #f4f4f6;
+    color: #222;
+}
+
+.site-header {
+    text-align: center;
+    padding: 1.25rem 1rem 0.5rem;
+}
+
+.site-header h1 {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin: 0;
+    color: #333;
+}
+
+.workspace {
+    flex: 1;
+    display: flex;
+    gap: 2rem;
+    padding: 1.5rem 2rem 2.5rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.board-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .container {
     display: flex;
     flex-wrap: wrap;
-    height: 90vmin;
-    width: 90vmin;
+    height: min(70vmin, 650px);
+    width: min(70vmin, 650px);
+    cursor: crosshair;
     --n: 16;
+    background: #faf9f7;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 4px solid #b32020;
 }
 
 .grid-item {
     aspect-ratio: 1 / 1;
     flex: 0 0 calc(100% / var(--n));
     background-color: antiquewhite;
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
-#changeBtn {
-    align-self: center;
-    margin: 50px;
-    padding: 15px;
+.erase {
+    cursor: cell;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.25rem 1.5rem 1.75rem;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.10), 0 2px 6px rgba(0, 0, 0, 0.06);
+    min-width: 230px;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.group-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: #666;
+}
+
+.controls button,
+.controls input[type="color"] {
+    appearance: none;
+    border: none;
+    padding: 0.65rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    background: #e2e5eb;
+    color: #222;
+    cursor: pointer;
+    transition: background 120ms, transform 80ms, box-shadow 120ms;
+}
+
+.controls button:hover,
+.controls input[type="color"]:hover {
+    background: #d5d9e1;
+}
+
+.controls button:active {
+    transform: translateY(1px);
+}
+
+.controls button#clear {
+    background: #ffe3e3;
+}
+
+.controls button#clear:hover {
+    background: #ffd2d2;
+}
+
+.controls button#eraseToggle[aria-pressed="true"],
+.controls button#eraseToggle.erase-active {
+    background: #222;
+    color: #fff;
+}
+
+#modeToggle[data-mode="color"] {
+    background: #222;
+    color: #fff;
+}
+
+#modeToggle[data-mode="rainbow"] {
+    background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
+    color: #111;
+}
+
+#modeToggle[data-mode="random"] {
+    background: repeating-conic-gradient(from 0deg, #444 0 10deg, #999 10deg 20deg);
+    color: #fff;
+}
+
+#modeToggle[data-mode="shade"] {
+    background: linear-gradient(90deg, #000, #fff);
+    color: #fff;
+}
+
+#colorPicker {
+    padding: 0;
+    height: 2.5rem;
+    width: 100%;
+}
+
+@media (max-width: 920px) {
+    .workspace {
+        flex-direction: column;
+        padding: 1rem 1rem 2rem;
+    }
+
+    .controls {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 560px;
+    }
+
+    .control-group {
+        width: 45%;
+        min-width: 180px;
+    }
+}
+
+#modeToggle[data-mode="shade"] {
+    background: linear-gradient(90deg, #000, #fff);
+    color: #fff;
+}
+
+#modeToggle[data-mode="rainbow"] {
+    background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
+    color: #111;
+}
+
+#modeToggle[data-mode="random"] {
+    background: repeating-conic-gradient(from 0deg, #444 0 10deg, #999 10deg 20deg);
+    color: #fff;
+}
+
+#modeToggle[data-mode="color"] {
+    background: #222;
+    color: #fff;
+}
+
+#colorPicker {
+    margin: 10px;
+    width: 150px;
+    height: 50px;
+    padding: 0;
+    border: 2px solid #333;
+    background: #fff;
+    cursor: pointer;
 }
