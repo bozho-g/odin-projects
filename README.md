@@ -23,3 +23,7 @@ This repository contains projects from The Odin Project curriculum. Below is a b
 ### 5. Calculator
 - Description: A functional calculator built with HTML, CSS, and JavaScript.
 - Live Demo: https://frosty0420.github.io/odin-projects/calculator/
+
+### 6. Sign Up Form
+- Description: A sign-up form with validation.
+- Live Demo: https://frosty0420.github.io/odin-projects/sign-up-form/
