@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Form</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="image">
+            <img class="sign-up-image" src="./images/sign-up-image.jpg" alt="Sign Up Image">
+
+            <div class="image-overlay">
+                <img src="./images/odin-lined.png" alt="Odin logo">
+                <span class="odin-text">ODIN</span>
+            </div>
+
+            <p class="picture-credit">Photo by <a
+                    href="https://unsplash.com/@jonasdegener?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Jonas
+                    Degener</a> on <a
+                    href="https://unsplash.com/photos/lake-braies-reflects-the-stunning-mountain-peaks-Q8nIioObbas?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+            </p>
+        </div>
+
+        <div class="form-container">
+            <div class="top-header item">
+                <p class="main-text">This is not a real online service! You know you need something like this in your
+                    life to help you
+                    realize your deepest dreams. <br>Sign up <em>now</em> to get started!
+                </p>
+                <div class="spacer"></div>
+                <p class="main-text">You <em>know</em> you want to.</p>
+            </div>
+            <div class="form-content item">
+                <p class="main-text">Let's do this!</p>
+
+                <form id="signup-form">
+                    <div class="form-row">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" name="first-name" placeholder="John" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" name="last-name" placeholder="Doe" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="john.doe@example.com" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="123-456-7890" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" name="confirm-password" required>
+                    </div>
+                </form>
+            </div>
+            <div class="bottom-header item">
+                <button type="submit" form="signup-form">Create Account</button>
+
+                <p>Already have an account? <a href="#">Log in</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
