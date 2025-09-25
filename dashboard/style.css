@@ -1,0 +1,327 @@
+* {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    grid-template-areas:
+        "sidebar header"
+        "sidebar main";
+    grid-template-rows: 20dvh 80dvh;
+    height: 100vh;
+}
+
+.sidebar a {
+    margin: 1rem 0;
+    cursor: pointer;
+    transition: color 0.3s;
+    color: #FFFFF0;
+    font-size: 1.3rem;
+    text-decoration: none;
+
+    & svg {
+        width: 1.2em;
+        height: 1.2em;
+        vertical-align: middle;
+        margin-right: 0.5em;
+        fill: currentColor;
+    }
+
+    &:hover {
+        color: #FFD700;
+        text-decoration: underline;
+    }
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+
+    & li {
+        padding: 0.7rem;
+    }
+}
+
+.heading a {
+    font-size: 1.7rem;
+}
+
+.sidebar {
+    grid-area: sidebar;
+    background-color: #6A5ACD;
+    color: #FFFFF0;
+    padding: 1.5rem;
+    display: grid;
+    grid-template-rows: auto auto auto 1fr;
+    row-gap: 3rem;
+}
+
+header {
+    grid-area: header;
+    background-color: #E6E6FA;
+    padding: 1.5rem;
+    border-bottom: 2px solid #D3D3D3;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+header svg {
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+    fill: currentColor;
+}
+
+.top-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 2rem;
+
+    & input {
+        padding: 0.5rem 1rem;
+        border-radius: 16px;
+        border: 2px solid #4B0082;
+        background-color: #FFFFFF;
+        font-size: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        outline: none;
+        width: 500px;
+        transition: box-shadow 0.3s, border-color 0.3s;
+
+        &:focus {
+            border-color: #FFD700;
+            box-shadow: 0 3px 6px rgba(255, 215, 0, 0.3);
+            background-color: #FFFFF0;
+        }
+    }
+
+    & svg {
+        cursor: pointer;
+        transition: color 0.3s;
+        color: #4B0082;
+
+        &:hover {
+            color: #FFD700;
+        }
+    }
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #4B0082;
+    width: 200px;
+}
+
+.small-pfp {
+    height: 45px;
+    width: auto;
+    border-radius: 50%;
+    margin-right: 1.5rem;
+}
+
+.bottom-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 2rem 0 2rem;
+}
+
+.bottom-header .intro {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.bottom-header .greeting {
+    font-size: 0.9rem;
+    color: #4B0082;
+}
+
+.bottom-header .username {
+    font-size: 1.3rem;
+}
+
+.bottom-header .button-grp {
+    margin-left: auto;
+    display: flex;
+    gap: 1.5rem;
+
+    & .btn {
+        padding: 0.8rem 2rem;
+        border: none;
+        border-radius: 16px;
+        background-color: #4B0082;
+        color: #FFFFF0;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s, box-shadow 0.3s;
+
+        &:hover {
+            background-color: #FFD700;
+            color: #4B0082;
+            box-shadow: 0 3px 6px rgba(255, 215, 0, 0.3);
+        }
+    }
+}
+
+.big-pfp {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+main {
+    grid-area: main;
+    padding: 1rem;
+    background-color: #F5F3FF;
+
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas:
+        "projects announcements"
+        "projects trending";
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
+}
+
+.projects {
+    grid-area: projects;
+    background-color: #FFFFF0;
+    border-radius: 16px;
+    padding: 1rem;
+    border: 1px solid #E6E6FA;
+    box-shadow: 0 4px 12px rgba(75, 0, 130, 0.08);
+}
+
+.project-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-top: 0.75rem;
+}
+
+.project-card {
+    background-color: #E6E6FA;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(75, 0, 130, 0.1);
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid transparent;
+    transition: transform 0.12s ease-out, box-shadow 0.12s ease-out, border-color 0.12s ease-out;
+}
+
+.project-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(75, 0, 130, 0.18);
+    border-color: #D8B4FE;
+}
+
+.project-card:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.6), 0 6px 16px rgba(75, 0, 130, 0.18);
+    border-color: #FFD700;
+}
+
+.project-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.project-info {
+    margin-top: 0.75rem;
+}
+
+.project-info h4 {
+    color: #000;
+    margin-bottom: 0.25rem;
+}
+
+.project-info p {
+    color: #4B5563;
+}
+
+.announcements {
+    grid-area: announcements;
+    background-color: #FFFFF0;
+    border-radius: 16px;
+    padding: 1rem;
+    border: 1px solid #E6E6FA;
+    box-shadow: 0 4px 12px rgba(75, 0, 130, 0.08);
+
+    & .announcement-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 0.75rem;
+    }
+
+    & .announcement {
+        background-color: #E6E6FA;
+        padding: 0.5rem 0.5rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(75, 0, 130, 0.1);
+    }
+}
+
+.trending {
+    grid-area: trending;
+    background-color: #FFFFF0;
+    border-radius: 16px;
+    padding: 1rem;
+    border: 1px solid #E6E6FA;
+    box-shadow: 0 4px 12px rgba(75, 0, 130, 0.08);
+}
+
+.trends {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 0.75rem;
+}
+
+.trend {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.trend-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.trend-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.trend-user {
+    font-weight: 600;
+}
+
+.trend-project {
+    color: #6B7280;
+    font-size: 0.95rem;
+}
+
+.projects h3,
+.announcements h3,
+.trending h3 {
+    color: #4B0082;
+}
