@@ -27,3 +27,7 @@ This repository contains projects from The Odin Project curriculum. Below is a b
 ### 6. Sign Up Form
 - Description: A sign-up form with validation.
 - Live Demo: https://frosty0420.github.io/odin-projects/sign-up-form/
+
+### 7. Dashboard
+- Description: A dashboard showcasing all the projects with links to their live demos.
+- Live Demo: https://frosty0420.github.io/odin-projects/dashboard/
