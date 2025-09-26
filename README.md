@@ -25,5 +25,6 @@ https://frosty0420.github.io/odin-projects/
 	https://frosty0420.github.io/odin-projects/js-track/sign-up-form/
 - Dashboard - layout + component styling
 	https://frosty0420.github.io/odin-projects/js-track/dashboard/
-
+- Library - book library with localStorage persistence
+	https://frosty0420.github.io/odin-projects/js-track/javacript-exercises/library/
 ---
