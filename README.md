@@ -1,33 +1,29 @@
 # Odin Projects
 
-This repository contains projects from The Odin Project curriculum. Below is a brief description of each project. Live links use a single GitHub Pages source and point to subdirectories.
+Small practice projects built while going through The Odin Project. Each project lives in a subfolder and has a GitHub Pages site.
 
-## Projects
+Index page (lists everything):
+https://frosty0420.github.io/odin-projects/
 
-### 1. Odin Landing Page
-- Description: A simple landing page to practice HTML and CSS.
-- Live Demo: https://frosty0420.github.io/odin-projects/odin-landing-page/
+---
+## Foundations
 
-### 2. Odin Recipes
-- Description: A recipe website with multiple pages for different recipes.
-- Live Demo: https://frosty0420.github.io/odin-projects/odin-recipes/
+- Landing Page - basic layout & styling
+	https://frosty0420.github.io/odin-projects/foundations/odin-landing-page/
+- Recipes - simple multi‑page site & links
+	https://frosty0420.github.io/odin-projects/foundations/odin-recipes/
+- Rock Paper Scissors - first JS logic exercise
+	https://frosty0420.github.io/odin-projects/foundations/rock-paper-scissors/
+- Etch a Sketch - dynamic grid + DOM events
+	https://frosty0420.github.io/odin-projects/foundations/etch-a-sketch/
+- Calculator - chaining operations & basic state
+	https://frosty0420.github.io/odin-projects/foundations/calculator/
 
-### 3. Rock Paper Scissors
-- Description: A simple Rock Paper Scissors game implemented in JavaScript.
-- Live Demo: https://frosty0420.github.io/odin-projects/rock-paper-scissors/
+## JavaScript Track
 
-### 4. Etch a Sketch
-- Description: A digital version of the classic Etch a Sketch toy, allowing users to draw on a grid.
-- Live Demo: https://frosty0420.github.io/odin-projects/etch-a-sketch/
+- Sign Up Form - basic form validation
+	https://frosty0420.github.io/odin-projects/js-track/sign-up-form/
+- Dashboard - layout + component styling
+	https://frosty0420.github.io/odin-projects/js-track/dashboard/
 
-### 5. Calculator
-- Description: A functional calculator built with HTML, CSS, and JavaScript.
-- Live Demo: https://frosty0420.github.io/odin-projects/calculator/
-
-### 6. Sign Up Form
-- Description: A sign-up form with validation.
-- Live Demo: https://frosty0420.github.io/odin-projects/sign-up-form/
-
-### 7. Dashboard
-- Description: A dashboard showcasing all the projects with links to their live demos.
-- Live Demo: https://frosty0420.github.io/odin-projects/dashboard/
+---
