@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <h1 class="center">Library</h1>
+    <p class="center">A simple library app to keep track of books read and to be read.</p>
+    <button class="open-button">Add Book</button>
+    <div class="container">
+
+    </div>
+
+    <div class="form-popup" id="myForm">
+        <form action="#" class="form-container">
+            <h3>Add book</h3>
+            <div class="form-fields">
+                <div class="form-row">
+                    <label for="name">Title</label>
+                    <input id="name" name="name" type="text" required>
+                </div>
+                <div class="form-row inline">
+                    <div>
+                        <label for="author">Author</label>
+                        <input id="author" name="author" type="text" required>
+                    </div>
+                    <div>
+                        <label for="pages">Pages</label>
+                        <input id="pages" name="pages" type="number" min="1" required>
+                    </div>
+                </div>
+                <div class="checkbox-row">
+                    <input id="isRead" name="isRead" type="checkbox">
+                    <label for="isRead">Already read</label>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn">Add</button>
+                <button type="button" class="btn cancel">Cancel</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

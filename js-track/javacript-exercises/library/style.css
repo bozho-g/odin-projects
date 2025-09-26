@@ -1,0 +1,228 @@
+ * {
+     padding: 0;
+     margin: 0;
+     box-sizing: border-box;
+ }
+
+ :root {
+     --clr-bg: #0F1115;
+     --clr-surface: #182025;
+     --clr-surface-alt: #1E2A30;
+     --clr-border: #2A353B;
+     --clr-text: #E6EEF0;
+     --clr-text-muted: #7E8A92;
+     --clr-accent: #3BBF8A;
+     --clr-accent-alt: #7C5CFF;
+     --clr-danger: #FF5252;
+     --clr-badge: #CFAF52;
+     --radius: 14px;
+     --shadow: 0 4px 16px -4px rgba(0, 0, 0, .55), 0 0 0 1px #1C262B;
+ }
+
+ body {
+     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+     background-color: var(--clr-bg);
+     color: var(--clr-text);
+ }
+
+ .center {
+     text-align: center;
+     padding: 20px 0 10px 0;
+ }
+
+ .open-button {
+     background: var(--clr-accent);
+     color: #071712;
+     border: none;
+     padding: .9rem 1.6rem;
+     font-size: 1.5rem;
+     border-radius: 8px;
+     cursor: pointer;
+     margin-left: 50px;
+     transition: background .25s, box-shadow .25s;
+ }
+
+ button:hover {
+     background: var(--clr-accent-alt);
+     color: #fff;
+     box-shadow: 0 0 0 3px #7c5cff33;
+ }
+
+ .container {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
+     justify-content: center;
+     gap: 1.5rem;
+     padding: 1.5rem;
+ }
+
+ .book {
+     padding: 1rem;
+     background: var(--clr-surface);
+     border: 1px solid var(--clr-border);
+     border-radius: var(--radius);
+     box-shadow: var(--shadow);
+     display: flex;
+     flex-direction: column;
+     justify-content: end;
+     gap: .5rem;
+     border-left: 5px solid var(--clr-accent);
+     font-size: 1.3rem;
+     line-height: 2rem;
+
+     .title {
+         font-weight: 600;
+         font-size: 1.7rem;
+         align-self: flex-start;
+     }
+ }
+
+ .book .btn {
+     margin-top: 1.2rem;
+     background: var(--clr-accent);
+     color: #071712;
+     border: none;
+     padding: .55rem;
+     font-size: 1rem;
+     border-radius: 8px;
+     cursor: pointer;
+     transition: background .25s, box-shadow .25s;
+
+     &.toggle-read:hover {
+         background: var(--clr-accent-alt);
+         color: #fff;
+         box-shadow: 0 0 0 3px #7c5cff33;
+     }
+ }
+
+ .form-popup {
+     display: none;
+     position: fixed;
+     inset: 0;
+     z-index: 50;
+     background: rgba(0, 0, 0, .55);
+     backdrop-filter: blur(3px);
+     padding: 1rem;
+     align-items: center;
+     justify-content: center;
+ }
+
+ .form-container {
+     width: min(360px, 100%);
+     background: var(--clr-surface);
+     border: 1px solid var(--clr-border);
+     border-radius: var(--radius);
+     padding: 1rem 1.1rem 1.15rem;
+     display: flex;
+     flex-direction: column;
+     gap: .75rem;
+     font-size: .9rem;
+ }
+
+ .form-container h3 {
+     margin: 0 0 .35rem;
+     font-size: 1.05rem;
+ }
+
+ .form-fields {
+     display: flex;
+     flex-direction: column;
+     gap: .65rem;
+ }
+
+ .form-row {
+     display: flex;
+     flex-direction: column;
+     gap: .35rem;
+ }
+
+ .form-row.inline {
+     flex-direction: row;
+     gap: .65rem;
+ }
+
+ .form-row.inline>* {
+     flex: 1;
+ }
+
+ .form-container label {
+     font-size: .65rem;
+     font-weight: 600;
+     letter-spacing: .5px;
+     text-transform: uppercase;
+     color: var(--clr-text-muted);
+ }
+
+ .form-container input[type=text],
+ .form-container input[type=number] {
+     width: 100%;
+     background: #1d272c;
+     border: 1px solid var(--clr-border);
+     color: var(--clr-text);
+     padding: .55rem .65rem;
+     border-radius: 8px;
+ }
+
+ .form-container input[type=text]:focus,
+ .form-container input[type=number]:focus {
+     outline: 2px solid var(--clr-accent);
+     outline-offset: 0;
+     border-color: var(--clr-accent);
+ }
+
+ .checkbox-row {
+     display: flex;
+     align-items: center;
+     gap: .5rem;
+     font-size: .75rem;
+ }
+
+ .checkbox-row input[type=checkbox] {
+     width: 16px;
+     height: 16px;
+     accent-color: var(--clr-accent);
+ }
+
+ .checkbox-row label {
+     margin: 0;
+     font-size: .75rem;
+     font-weight: 500;
+     text-transform: none;
+     letter-spacing: .3px;
+     color: var(--clr-text);
+ }
+
+ .form-actions {
+     display: flex;
+     gap: .6rem;
+     margin-top: .25rem;
+ }
+
+ .form-container .btn {
+     flex: 1;
+     background: var(--clr-accent);
+     color: #071712;
+     border: none;
+     padding: .65rem .9rem;
+     font-weight: 600;
+     font-size: .75rem;
+     letter-spacing: .4px;
+     border-radius: 8px;
+     cursor: pointer;
+ }
+
+ .form-container .btn:hover {
+     background: var(--clr-accent-alt);
+     color: #fff;
+ }
+
+ .form-container .cancel,
+ .remove-book {
+     background: var(--clr-danger);
+     color: #fff;
+ }
+
+ .form-container .cancel:hover,
+ .remove-book:hover {
+     background: #ff3131;
+ }
