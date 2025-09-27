@@ -15,12 +15,14 @@ function persist() {
     localStorage.setItem('library', JSON.stringify(library));
 }
 
-function Book(name, author, pages, isRead) {
-    this.id = crypto.randomUUID();
-    this.name = name;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
+class Book {
+    constructor(name, author, pages, isRead) {
+        this.id = crypto.randomUUID();
+        this.name = name;
+        this.author = author;
+        this.pages = pages;
+        this.isRead = isRead;
+    }
 }
 
 function toggleForm(show) {
