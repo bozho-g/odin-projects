@@ -27,4 +27,6 @@ https://frosty0420.github.io/odin-projects/
 	https://frosty0420.github.io/odin-projects/js-track/dashboard/
 - Library - book library with localStorage persistence
 	https://frosty0420.github.io/odin-projects/js-track/javacript-exercises/library/
+- Tic Tac Toe - simple two-player game with win/draw detection
+	https://frosty0420.github.io/odin-projects/js-track/javacript-exercises/tic-tac-toe/
 ---
