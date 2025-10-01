@@ -197,6 +197,7 @@ function handleUpdateDelete(e) {
 
             if (!isTask) {
                 tasks = tasks.filter(x => x.projectId != element.dataset.id);
+                tasks._name = "tasks";
             }
         } else if (targetClosest.classList.contains("edit")) {
             isEdit = true;
