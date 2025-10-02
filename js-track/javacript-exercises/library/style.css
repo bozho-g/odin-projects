@@ -157,7 +157,6 @@
  .form-container input[type=number] {
      width: 100%;
      background: #1d272c;
-     border: 1px solid var(--clr-border);
      color: var(--clr-text);
      padding: .55rem .65rem;
      border-radius: 8px;
@@ -181,6 +180,23 @@
      width: 16px;
      height: 16px;
      accent-color: var(--clr-accent);
+ }
+
+ input:hover {
+     border-color: black;
+ }
+
+ input.invalid {
+     border-color: #dc2626;
+ }
+
+ input.valid {
+     border-color: #16a34a;
+ }
+
+ .error-message {
+     color: var(--clr-danger);
+     font-size: 0.9em;
  }
 
  .checkbox-row label {

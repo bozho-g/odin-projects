@@ -27,6 +27,7 @@ class Book {
 
 function toggleForm(show) {
     popup.style.display = show ? 'flex' : 'none';
+    form.reset();
 }
 
 function createBookElement(book) {
@@ -96,9 +97,52 @@ function bookActions(e) {
     refresh();
 }
 
+const validators = {
+    name: (value) => value.trim() !== "" || "Title is required",
+    author: (value) => value.trim() !== "" || "Author is required",
+    pages: (value) => {
+        if (value.trim() === "") return "Pages are required";
+        if (parseInt(value) < 1) return "Pages must be at least 1";
+        return true;
+    }
+};
+
+function validateField(input) {
+    const rule = validators[input.name];
+    if (!rule) return true;
+
+    const result = rule(input.value);
+    const errorEl = document.getElementById(`${input.name}-error`);
+
+    if (result === true) {
+        input.classList.remove("invalid");
+        input.classList.add("valid");
+        if (errorEl) errorEl.textContent = "";
+        return true;
+    } else {
+        input.classList.remove("valid");
+        input.classList.add("invalid");
+        if (errorEl) errorEl.textContent = result;
+        return false;
+    }
+}
+
+form.querySelectorAll("input").forEach((input) => {
+    input.addEventListener("input", () => validateField(input));
+});
+
 function addBook(e) {
     e.preventDefault();
     const data = new FormData(form);
+
+    let allValid = true;
+    form.querySelectorAll("input").forEach((input) => {
+        if (!validateField(input)) allValid = false;
+    });
+
+    if (!allValid) {
+        return;
+    }
 
     library.push(
         new Book(

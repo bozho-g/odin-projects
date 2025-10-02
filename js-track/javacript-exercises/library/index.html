@@ -23,16 +23,19 @@
             <div class="form-fields">
                 <div class="form-row">
                     <label for="name">Title</label>
-                    <input id="name" name="name" type="text" required>
+                    <input id="name" name="name" type="text">
+                    <span class="error-message" id="name-error"></span>
                 </div>
                 <div class="form-row inline">
                     <div>
                         <label for="author">Author</label>
-                        <input id="author" name="author" type="text" required>
+                        <input id="author" name="author" type="text">
+                        <span class="error-message" id="author-error"></span>
                     </div>
                     <div>
                         <label for="pages">Pages</label>
-                        <input id="pages" name="pages" type="number" min="1" required>
+                        <input id="pages" name="pages" type="number" min="1">
+                        <span class="error-message" id="pages-error"></span>
                     </div>
                 </div>
                 <div class="checkbox-row">
