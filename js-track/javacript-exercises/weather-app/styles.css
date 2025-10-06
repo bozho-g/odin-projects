@@ -1,0 +1,356 @@
+:root {
+    --clr-primary: #4B2067;
+    --clr-secondary: #2D1436;
+    --clr-accent: #7F53AC;
+    --clr-background: #1B1B2F;
+    --clr-text: #E0E0E3;
+    --clr-error: #FF6F61;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    color: var(--clr-text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--clr-primary) 0%, var(--clr-secondary) 60%, var(--clr-accent) 100%);
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    background: rgba(43, 18, 54, 0.85);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+    gap: 5rem;
+}
+
+.title {
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2em;
+
+    .wi {
+        font-size: 0.8em;
+        color: orange;
+        vertical-align: middle;
+    }
+}
+
+#weatherForm {
+    display: inline-block;
+}
+
+#cityInput {
+    position: relative;
+    max-width: 400px;
+    width: 390px;
+    padding: 12px;
+    border-radius: 12px;
+    outline: none;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    background-color: rgba(255, 255, 255, 0.07);
+    color: var(--clr-text);
+
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+#suggestions {
+    position: absolute;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    width: 300px;
+    margin-top: 4px;
+    padding: 16px 0;
+    list-style: none;
+    background-color: #292929;
+    border-radius: 12px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease-in-out 0s;
+}
+
+#suggestions.shown {
+    opacity: 1;
+    visibility: visible;
+}
+
+#suggestions button {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--clr-text);
+    text-align: left;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+
+#suggestions button:hover,
+#suggestions button:focus,
+#suggestions button.selected {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.no-results {
+    color: #FF6F61;
+    text-align: center;
+    padding: 12px 0;
+    font-style: italic;
+}
+
+.cityName {
+    font-weight: 800;
+}
+
+.regionName {
+    font-size: 0.8rem;
+}
+
+main {
+    flex: 1;
+    padding: 1.5rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.grid-item {
+    border: 3px solid rgba(255, 255, 255, 0.07);
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    padding: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+
+.description {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: auto;
+}
+
+
+.section-heading {
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+
+.current-forecast {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    .currentTemp {
+        font-size: 4rem;
+        font-weight: 600;
+
+        .temp-unit {
+            font-size: 0.5em;
+            vertical-align: super;
+        }
+    }
+
+    .current-state {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .condition {
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+    }
+
+
+}
+
+.information {
+    display: flex;
+    justify-content: space-between;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.value {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.weather-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+    grid-template-rows: auto auto;
+    gap: 1rem;
+}
+
+.side-panel {
+    justify-content: space-between;
+}
+
+.alerts {
+    background: rgba(255, 215, 0, 0.15);
+    border-left: 5px solid #FFD700;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.alerts h3 {
+    color: #FFD700;
+}
+
+.alerts ul {
+    list-style: disc inside;
+    color: var(--clr-text);
+}
+
+.additional {
+    margin-top: auto;
+}
+
+.forecast {
+    grid-column: 1/-1;
+    display: flex;
+    flex-direction: column;
+}
+
+.forecast ul {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1rem;
+}
+
+.forecast li {
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 0.8rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 0.6rem 0.7rem;
+    min-width: 160px;
+    min-height: 150px;
+    transition: transform 0.15s, box-shadow 0.15s;
+    border: 2px solid rgba(255, 255, 255, 0.10);
+
+    display: flex;
+    flex-direction: column;
+}
+
+.forecast li:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    border-color: var(--clr-accent);
+}
+
+.forecast .date {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.icon {
+    font-size: 4rem;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.main {
+    font-size: 6rem;
+    margin: 0;
+}
+
+.forecast li .top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.forecast li .bottom {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.forecast li .temps {
+    display: flex;
+    flex-direction: column;
+}
+
+.tempmax {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.tempmin {
+    font-size: 1.1rem;
+}
+
+#spinner {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.28);
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 150ms ease;
+}
+
+#spinner.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.spinner-bounce {
+    display: flex;
+    gap: 8px;
+}
+
+.spinner-bounce>div {
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 50%;
+    animation: bounce 600ms infinite ease-in-out;
+    opacity: 0.95;
+}
+
+.spinner-bounce>div:nth-child(2) {
+    animation-delay: 100ms;
+}
+
+.spinner-bounce>div:nth-child(3) {
+    animation-delay: 200ms;
+}
+
+@keyframes bounce {
+
+    0%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+}
