@@ -67,25 +67,28 @@ export default class LinkedList {
         return removed.value;
     }
 
-    contains(value) {
-        let curr = this.head;
+    contains(value, compareFn = (a, b) => a === b) {
+        return this.find(value, compareFn) ? true : false;
+    }
 
+    find(value, compareFn = (a, b) => a === b) {
+        let curr = this.head;
         while (curr) {
-            if (curr.value === value) {
-                return true;
+            if (compareFn(curr.value, value)) {
+                return curr;
             }
 
             curr = curr.next;
         }
 
-        return false;
+        return null;
     }
 
-    find(value) {
+    findIndex(value, compareFn = (a, b) => a === b) {
         let curr = this.head;
         let i = 0;
         while (curr) {
-            if (curr.value === value) {
+            if (compareFn(curr.value, value)) {
                 return i;
             }
 
@@ -174,6 +177,17 @@ export default class LinkedList {
 
         this.size--;
         return removed.value;
+    }
+
+    replaceOrAppend(value, compareFn = (a, b) => a === b) {
+        let doesExist = this.find(value, compareFn);
+
+        if (doesExist) {
+            doesExist.value = value;
+            return;
+        }
+
+        this.append(value);
     }
 }
 
