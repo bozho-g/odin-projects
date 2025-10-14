@@ -35,4 +35,6 @@ https://frosty0420.github.io/odin-projects/
 	https://frosty0420.github.io/odin-projects/js-track/javacript-exercises/todo-list/
 - Weather App - fetch API + async JS
 	https://frosty0420.github.io/odin-projects/js-track/javacript-exercises/weather-app/
+- Battleship - two-player game with basic AI opponent
+	https://frosty0420.github.io/odin-projects/js-track/javacript-exercises/battleship/ui/
 ---
