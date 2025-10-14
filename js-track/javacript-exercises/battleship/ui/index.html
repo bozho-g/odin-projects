@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battleship</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="../src/main.js" type="module"></script>
+</head>
+
+<body>
+    <h1 class="title">Battleship</h1>
+
+    <div class="home">
+        <button class="btn choice bot">
+            <svg fill="currentColor" width="64px" height="64px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                stroke="currentColor">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <path
+                        d="M21.928 11.607c-.202-.488-.635-.605-.928-.633V8c0-1.103-.897-2-2-2h-6V4.61c.305-.274.5-.668.5-1.11a1.5 1.5 0 0 0-3 0c0 .442.195.836.5 1.11V6H5c-1.103 0-2 .897-2 2v2.997l-.082.006A1 1 0 0 0 1.99 12v2a1 1 0 0 0 1 1H3v5c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5a1 1 0 0 0 1-1v-1.938a1.006 1.006 0 0 0-.072-.455zM5 20V8h14l.001 3.996L19 12v2l.001.005.001 5.995H5z">
+                    </path>
+                    <ellipse cx="8.5" cy="12" rx="1.5" ry="2"></ellipse>
+                    <ellipse cx="15.5" cy="12" rx="1.5" ry="2"></ellipse>
+                    <path d="M8 16h8v2H8z"></path>
+                </g>
+            </svg>
+            <div class="text">
+                <div class="playvs">
+                    PLAY VS.
+                </div>
+                <div class="opponent">
+                    BOT
+                </div>
+            </div>
+        </button>
+
+        <button class="btn choice player">
+            <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                stroke="curentColor">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <path opacity="0.15"
+                        d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z"
+                        fill="#000000"></path>
+                    <path
+                        d="M19 15C21.2091 15 23 16.7909 23 19V21H21M16 10.874C17.7252 10.4299 19 8.86384 19 7C19 5.13617 17.7252 3.57007 16 3.12602M13 7C13 9.20914 11.2091 11 9 11C6.79086 11 5 9.20914 5 7C5 4.79086 6.79086 3 9 3C11.2091 3 13 4.79086 13 7ZM5 15H13C15.2091 15 17 16.7909 17 19V21H1V19C1 16.7909 2.79086 15 5 15Z"
+                        stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+            </svg>
+            <div class="text">
+                <div class="playvs">
+                    PLAY VS.
+                </div>
+                <div class="opponent">
+                    FRIEND
+                </div>
+            </div>
+        </button>
+    </div>
+
+    <div class="game">
+
+    </div>
+
+    <div class="hide-screen hidden">
+        <div class="content">
+            <h1 class="hide-title">Hide the screen from your friend and place your ships</h1>
+            <button class="continue-btn">OK</button>
+        </div>
+    </div>
+
+    <div class="play-again">
+        <button class="btn play-again-btn">Play Again</button>
+    </div>
+</body>
+
+</html>
