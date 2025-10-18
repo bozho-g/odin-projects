@@ -37,4 +37,6 @@ https://bozho-g.github.io/odin-projects/
 	https://bozho-g.github.io/odin-projects/js-track/javacript-exercises/weather-app/
 - Battleship - two-player game with basic AI opponent
 	https://bozho-g.github.io/odin-projects/js-track/javacript-exercises/battleship/ui/
+- Homepage - responsive design practice
+	https://bozho-g.github.io/odin-projects/js-track/homepage/	
 ---
