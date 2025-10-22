@@ -38,5 +38,7 @@ https://bozho-g.github.io/odin-projects/
 - Battleship - two-player game with basic AI opponent
 	https://bozho-g.github.io/odin-projects/js-track/javacript-exercises/battleship/ui/
 - Homepage - responsive design practice
-	https://bozho-g.github.io/odin-projects/js-track/homepage/	
+	https://bozho-g.github.io/odin-projects/js-track/homepage/
+- CV Application - build & deploy a CV app
+	https://top-cv-app-bozho-g.netlify.app/
 ---
