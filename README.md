@@ -41,4 +41,6 @@ https://bozho-g.github.io/odin-projects/
 	https://bozho-g.github.io/odin-projects/js-track/homepage/
 - CV Application - build & deploy a CV app
 	https://top-cv-app-bozho-g.netlify.app/
+- Memory Game - card memory game with shuffling and score tracking
+	https://memory-game-bozho-g.netlify.app/
 ---
