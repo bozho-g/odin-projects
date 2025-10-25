@@ -43,4 +43,6 @@ https://bozho-g.github.io/odin-projects/
 	https://top-cv-app-bozho-g.netlify.app/
 - Memory Game - card memory game with shuffling and score tracking
 	https://memory-game-bozho-g.netlify.app/
+- Shopping Cart - shopping site with item management and total calculation
+	https://shopping-cart-bozho-g.netlify.app/
 ---
