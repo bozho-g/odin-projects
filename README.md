@@ -45,4 +45,6 @@ https://bozho-g.github.io/odin-projects/
 	https://memory-game-bozho-g.netlify.app/
 - Shopping Cart - shopping site with item management and total calculation
 	https://shopping-cart-bozho-g.netlify.app/
+- Basic Info Site - intro to node js server
+	https://bozho-g.github.io/odin-projects/js-track/nodejs/basic-info-site/
 ---
