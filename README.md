@@ -47,4 +47,6 @@ https://bozho-g.github.io/odin-projects/
 	https://shopping-cart-bozho-g.netlify.app/
 - Basic Info Site - intro to node js server
 	https://bozho-g.github.io/odin-projects/js-track/nodejs/basic-info-site/public/
+- Message Board - simple message board with Express and EJS
+	https://message-board-theta.vercel.app/
 ---
