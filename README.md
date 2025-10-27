@@ -46,5 +46,5 @@ https://bozho-g.github.io/odin-projects/
 - Shopping Cart - shopping site with item management and total calculation
 	https://shopping-cart-bozho-g.netlify.app/
 - Basic Info Site - intro to node js server
-	https://bozho-g.github.io/odin-projects/js-track/nodejs/basic-info-site/
+	https://bozho-g.github.io/odin-projects/js-track/nodejs/basic-info-site/public/
 ---
