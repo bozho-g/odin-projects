@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('head.ejs', { title: 'New Message' }) %>
+
+    <body>
+        <h1>
+            New Message
+        </h1>
+        <form action="/new" method="post">
+            <input placeholder="Your name" id="user" name="user" required>
+            <textarea placeholder="Your message" id="text" name="text" required></textarea>
+            <button type="submit">Submit</button>
+            </div>
+        </form>
+    </body>
+
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('head.ejs', { title: 'Message Details' }) %>
+
+    <body>
+        <h1>Message <%= message.id %>
+        </h1>
+        <p><strong>User:</strong>
+            <%= message.user %>
+        </p>
+        <p><strong>Message:</strong>
+            <%= message.text %>
+        </p>
+        <p><strong>Added:</strong>
+            <%= message.added.toLocaleString() %>
+        </p>
+        <a class="redirect" href="/">Back to Message Board</a>
+    </body>
+
+</html>

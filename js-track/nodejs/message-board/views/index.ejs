@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('head.ejs', { title: 'Message Board' }) %>
+
+    <body>
+        <h1>
+            Message Board
+        </h1>
+        <ul>
+            <% messages.forEach(message=> { %>
+                <li><a href="/<%= message.id %>">
+                        <strong>
+                            <%= message.user %>:
+                        </strong>
+                        <%= message.text %> <em>(<%= message.added.toLocaleString() %>)</em>
+                    </a>
+                </li>
+                <% }) %>
+        </ul>
+        <a class="redirect" href="/new">New Message</a>
+    </body>
+
+</html>
