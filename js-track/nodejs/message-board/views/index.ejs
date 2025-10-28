@@ -11,9 +11,9 @@
             <% messages.forEach(message=> { %>
                 <li><a href="/<%= message.id %>">
                         <strong>
-                            <%= message.user %>:
+                            <%= message.author %>:
                         </strong>
-                        <%= message.text %> <em>(<%= message.added.toLocaleString() %>)</em>
+                        <%= message.message %> <em>(<%= message.created_at.toLocaleString() %>)</em>
                     </a>
                 </li>
                 <% }) %>

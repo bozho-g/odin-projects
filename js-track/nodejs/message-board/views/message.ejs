@@ -7,13 +7,13 @@
         <h1>Message <%= message.id %>
         </h1>
         <p><strong>User:</strong>
-            <%= message.user %>
+            <%= message.author %>
         </p>
         <p><strong>Message:</strong>
-            <%= message.text %>
+            <%= message.message %>
         </p>
         <p><strong>Added:</strong>
-            <%= message.added.toLocaleString() %>
+            <%= message.created_at.toLocaleString() %>
         </p>
         <a class="redirect" href="/">Back to Message Board</a>
     </body>
