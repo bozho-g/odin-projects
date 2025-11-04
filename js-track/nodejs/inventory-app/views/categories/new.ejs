@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head', { title: 'Create Category' }) %>
+
+    <body>
+        <%- include('../partials/nav') %>
+            <%- include('../partials/categoryForm', { title: 'Create Category' , action: '/categories/new' , category: {
+                name: '' } }) %>
+    </body>
+
+</html>

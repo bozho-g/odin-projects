@@ -1,0 +1,27 @@
+<nav>
+    <a class="logo" href="/">
+        <img src="/logo.png" alt="frosty cars logo">
+        <span class="brand">FrostyCars</span>
+    </a>
+
+    <ul class="nav-links">
+        <% const categories=locals.categories || []; %>
+            <% categories.forEach(category=> { %>
+                <li>
+                    <a href="/categories/<%= category.id %>"
+                        class="<%= String(category.id) === String(locals.activeCategoryId) ? 'active' : '' %>">
+                        <%= category.name %>
+                    </a>
+                </li>
+                <% }) %>
+
+                    <li>
+                        <a class="<%= locals.activeCategoryId === 'all' ? 'active' : '' %>" href="/categories/all">All
+                            Vehicles</a>
+                    </li>
+                    <li>
+                        <a class="<%= locals.activeCategoryId === 'new' ? 'active' : '' %>" href="/items/new">Add
+                            Vehicle</a>
+                    </li>
+    </ul>
+</nav>

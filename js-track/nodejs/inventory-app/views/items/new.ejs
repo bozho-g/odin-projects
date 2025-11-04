@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head.ejs', { title: 'New Item' }) %>
+
+    <body>
+        <%- include('../partials/nav.ejs') %>
+
+            <%- include('../partials/itemForm.ejs', { action: '/items/new' , item: { categoryId: '' , make: '' ,
+                model: '' , year: '' , mileage: '' , condition: '' , color: '' , power_hp: '' , engine_size: '' ,
+                engine_type: '' , gearbox: '' , title: '' , price: '' , images: '' , description: '' } }) %>
+    </body>
+
+</html>

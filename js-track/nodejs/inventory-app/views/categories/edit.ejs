@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head', { title: 'Edit Category' }) %>
+
+    <body>
+        <%- include('../partials/nav') %>
+            <%- include('../partials/categoryForm', { title: 'Edit Category' , action: '/categories/' + category.id
+                + '/edit/' }) %>
+    </body>
+
+</html>

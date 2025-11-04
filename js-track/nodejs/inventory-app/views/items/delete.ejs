@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head', { title: 'Delete Vehicle' }) %>
+
+    <body>
+        <%- include('../partials/nav') %>
+            <div class="container">
+                <h1>Delete Vehicle</h1>
+                <p>Are you sure you want to delete vehicle "<%= item.title %>"?</p>
+                <form class="category-form" action="/items/<%= item.id %>/delete/" method="POST">
+                    <div class="form-group">
+                        <%- include('../partials/adminInput') %>
+                    </div>
+                    <button type="submit" class="btn-apply">Delete Vehicle</button>
+                </form>
+            </div>
+    </body>
+
+</html>

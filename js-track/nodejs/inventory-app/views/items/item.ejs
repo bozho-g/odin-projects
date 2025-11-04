@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head', { title: 'Categories' }) %>
+
+    <body>
+        <%- include('../partials/nav') %>
+            <div class="item-info">
+                <div class="img-container">
+                    <img class="pic" src="<%= item.images[0] %>" alt="<%= item.title %>">
+                </div>
+
+                <div class="details">
+                    <strong class="title">
+                        <%= item.title %>
+                    </strong>
+                    <p class="price">$<%= item.price %>
+                    </p>
+                    <p>
+                        <%= item.description %>
+                    </p>
+
+                    <div class="specs">
+                        <div class="spec">
+                            <p><strong>Engine Type:</strong>
+                                <%= item.engine_type %>
+                            </p>
+                        </div>
+                        <div class="spec">
+                            <p><strong>Power:</strong>
+                                <%= item.power_hp %> HP
+                            </p>
+                        </div>
+                        <div class="spec">
+                            <p><strong>Mileage:</strong>
+                                <%= item.mileage %> km
+                            </p>
+                        </div>
+                        <div class="spec">
+                            <p><strong>Gearbox:</strong>
+                                <%= item.gearbox %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head', { title: 'Categories' }) %>
+
+    <body>
+        <%- include('../partials/nav') %>
+            <div class="container">
+                <div class="category-add">
+                    <h1>Categories</h1>
+                    <a href="/categories/new">
+                        <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M11.25 12.75V18H12.75V12.75H18V11.25H12.75V6H11.25V11.25H6V12.75H11.25Z"
+                                    fill="currentColor"></path>
+                            </g>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="categories">
+                    <% for (let category of categories) { %>
+                        <div class="category-item">
+                            <a class="category" href="/categories/<%= category.id %>">
+                                <%= category.name %>
+                            </a>
+                            <div class="actions">
+                                <a class="edit-button" href="/categories/<%= category.id %>/edit">Edit</a>
+                                <a class="delete-button" href="/categories/<%= category.id %>/delete">Delete</a>
+                            </div>
+                        </div>
+                        <% } %>
+                </div>
+            </div>
+    </body>
+
+</html>

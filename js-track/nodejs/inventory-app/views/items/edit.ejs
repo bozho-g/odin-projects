@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head.ejs', { title: 'Edit Item' }) %>
+
+    <body>
+        <%- include('../partials/nav.ejs') %>
+
+            <%- include('../partials/itemForm.ejs', { action: '/items/' + item.id + '/edit' }) %>
+    </body>
+
+</html>

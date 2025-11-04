@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head', { title: category.name || 'All Vehicles' }) %>
+
+    <body>
+        <%- include('../partials/nav') %>
+            <div class="form-container">
+                <% const itemsToMap=allItems ?? items; const makes=[...new Set(itemsToMap.map(i=>
+                    i.make).filter(Boolean))].sort();
+                    const models = [...new Set(itemsToMap.map(i => i.model).filter(Boolean))].sort();
+                    const engineTypes = [...new Set(itemsToMap.map(i => i.engine_type).filter(Boolean))].sort();
+                    const gearboxTypes = [...new Set(itemsToMap.map(i => i.gearbox).filter(Boolean))].sort();
+
+                    const prices = itemsToMap.map(i => Number(i.price)).filter(p => !isNaN(p) && p > 0);
+                    const minPrice = prices.length ? Math.min(...prices) : 0;
+                    const maxPrice = prices.length ? Math.max(...prices) : 100000;
+
+                    const years = itemsToMap.map(i => Number(i.year)).filter(y => !isNaN(y));
+                    const minYear = years.length ? Math.min(...years) : 1990;
+                    const maxYear = years.length ? Math.max(...years) : new Date().getFullYear();
+
+                    const powers = itemsToMap.map(i => Number(i.power_hp)).filter(p => !isNaN(p) && p > 0);
+                    const minPower = powers.length ? Math.min(...powers) : 0;
+                    const maxPower = powers.length ? Math.max(...powers) : 1000;
+
+                    const selectedMake = filters?.make || '';
+                    const selectedModels = filters?.model ? filters.model : [];
+
+                    const selectedEngineTypes = (() => {
+                    const v = filters?.engine_type;
+                    if (!v) return [];
+                    return Array.isArray(v) ? v : String(v).split(',').filter(Boolean);
+                    })();
+
+                    const selectedGearboxTypes = (() => {
+                    const v = filters?.gearbox;
+                    if (!v) return [];
+                    return Array.isArray(v) ? v : String(v).split(',').filter(Boolean);
+                    })();
+
+                    const selectedMinPrice = filters?.minPrice || minPrice;
+                    const selectedMaxPrice = filters?.maxPrice || maxPrice;
+
+                    const selectedMinYear = filters?.minYear || minYear;
+                    const selectedMaxYear = filters?.maxYear || maxYear;
+
+                    const selectedMinPower = filters?.minPower || minPower;
+                    const selectedMaxPower = filters?.maxPower || maxPower;
+
+                    const selectedSort = filters?.sort ||
+                    ''; %>
+                    <form id="filterForm" action="" method="GET">
+                        <div class="filter-grid">
+                            <div class="filter-group">
+                                <label for="makeSelect">Make</label>
+                                <select id="makeSelect" name="make">
+                                    <option value="">Any Make</option>
+                                    <% makes.forEach(make=> { %>
+                                        <option value="<%= make %>">
+                                            <%= make %>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                            </div>
+
+                            <div class="filter-group">
+                                <label for="modelSelect">Model</label>
+                                <select id="modelSelect" name="model" multiple>
+                                    <% models.forEach(model=> { %>
+                                        <option value="<%= model %>">
+                                            <%= model %>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                            </div>
+
+                            <div class="filter-group">
+                                <label for="engineSelect">Engine Type</label>
+                                <select id="engineSelect" name="engine_type" multiple>
+                                    <% engineTypes.forEach(type=> { %>
+                                        <option value="<%= type %>" <%=selectedEngineTypes.includes(type) ? 'selected'
+                                            : '' %>>
+                                            <%= type %>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                            </div>
+
+                            <div class="filter-group">
+                                <label for="gearboxSelect">Gearbox</label>
+                                <select id="gearboxSelect" name="gearbox" multiple>
+                                    <% gearboxTypes.forEach(type=> { %>
+                                        <option value="<%= type %>" <%=selectedGearboxTypes.includes(type) ? 'selected'
+                                            : '' %>>
+                                            <%= type %>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                            </div>
+
+                            <div class="filter-group range-group">
+                                <label>Price Range ($)</label>
+                                <div class="range-inputs" data-min="<%= minPrice %>" data-max="<%= maxPrice %>">
+                                    <input type="number" id="minPrice" name="minPrice" placeholder="Min"
+                                        value="<%= selectedMinPrice %>">
+                                    <span>—</span>
+                                    <input type="number" id="maxPrice" name="maxPrice" placeholder="Max"
+                                        value="<%= selectedMaxPrice %>">
+                                </div>
+                            </div>
+
+                            <div class="filter-group range-group">
+                                <label>Year Range</label>
+                                <div class="range-inputs" data-min="<%= minYear %>" data-max="<%= maxYear %>">
+                                    <input type="number" id="minYear" name="minYear" placeholder="Min"
+                                        value="<%= selectedMinYear %>" step="1">
+                                    <span>—</span>
+                                    <input type="number" id="maxYear" name="maxYear" placeholder="Max"
+                                        value="<%= selectedMaxYear %>" step="1">
+                                </div>
+                            </div>
+
+                            <div class="filter-group range-group">
+                                <label>Power Range (HP)</label>
+                                <div class="range-inputs" data-min="<%= minPower %>" data-max="<%= maxPower %>">
+                                    <input type="number" id="minPower" name="minPower" placeholder="Min"
+                                        value="<%= selectedMinPower %>" step="1">
+                                    <span>—</span>
+                                    <input type="number" id="maxPower" name="maxPower" placeholder="Max"
+                                        value="<%= selectedMaxPower %>" step="1">
+                                </div>
+                            </div>
+                            <div class="filter-group">
+                                <label for="sortSelect">Sort By</label>
+                                <select id="sortSelect" name="sort">
+                                    <option value="">Default</option>
+                                    <option value="price-Asc" <%=selectedSort==='price-Asc' ? 'selected' : '' %>>Price:
+                                        Low to High</option>
+                                    <option value="price-Desc" <%=selectedSort==='price-Desc' ? 'selected' : '' %>
+                                        >Price: High to Low</option>
+                                    <option value="year-Asc" <%=selectedSort==='year-Asc' ? 'selected' : '' %>>Year: Old
+                                        to New</option>
+                                    <option value="year-Desc" <%=selectedSort==='year-Desc' ? 'selected' : '' %>>Year:
+                                        New to Old</option>
+                                    <option value="power_hp-Asc" <%=selectedSort==='power_hp-Asc' ? 'selected' : '' %>
+                                        >Power:
+                                        Low to High</option>
+                                    <option value="power_hp-Desc" <%=selectedSort==='power_hp-Desc' ? 'selected' : '' %>
+                                        >Power: High to Low</option>
+                                    <option value="mileage-Asc" <%=selectedSort==='mileage-Asc' ? 'selected' : '' %>
+                                        >Mileage: Low to High</option>
+                                    <option value="mileage-Desc" <%=selectedSort==='mileage-Desc' ? 'selected' : '' %>
+                                        >Mileage: High to Low</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="filter-actions">
+                            <button type="submit" class="btn-apply">Apply Filters</button>
+                            <button type="button" id="resetBtn" class="btn-reset">Reset</button>
+                        </div>
+                    </form>
+            </div>
+
+            <h1 class="center">
+                <%= category.name || 'All Vehicles' %>
+            </h1>
+
+            <div class="items">
+                <% if (items.length===0) { %>
+                    <h1>No vehicles available.</h1>
+                    <% } else { %>
+                        <% items.forEach(item=> { %>
+                            <div class="item">
+                                <a href="/items/<%= item.id %>">
+                                    <div class="item-pic">
+                                        <img src="<%= item.images[0] %>" alt="car image">
+                                    </div>
+                                    <div class="item-text">
+                                        <%= item.title %>
+                                    </div>
+                                    <div class="item-price">
+                                        $
+                                        <%= item.price %>
+                                    </div>
+                                    <div class="item-mileage">
+                                        (
+                                        <%= item.mileage %>km )
+                                    </div>
+                                    <div class="item-created-at">
+                                        <%= item.created_at.toDateString() %> at
+                                            <%= item.created_at.toLocaleTimeString([], { hour: '2-digit' ,
+                                                minute: '2-digit' }) %>
+                                    </div>
+
+                                </a>
+                                <div class="actions">
+                                    <a href="/items/<%= item.id %>/edit" class="edit-button">Edit</a>
+                                    <a href="/items/<%= item.id %>/delete" class="delete-button">Delete</a>
+                                </div>
+                            </div>
+                            <% }) %>
+
+                                <% } %>
+            </div>
+
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+            <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js">
+            </script>
+
+            <script>
+                const makeChoices = new Choices('#makeSelect', {
+                    searchEnabled: true,
+                    shouldSort: false,
+                    itemSelectText: '',
+                    removeItemButton: false
+                });
+
+                const modelChoices = new Choices('#modelSelect', {
+                    searchEnabled: true,
+                    shouldSort: false,
+                    removeItemButton: true,
+                    placeholderValue: 'Select models',
+                    searchPlaceholderValue: 'Search models',
+                }).disable();
+
+                const engineChoices = new Choices('#engineSelect', {
+                    searchEnabled: false,
+                    removeItemButton: true,
+                    placeholderValue: 'Select engine types',
+                    searchPlaceholderValue: 'Search engine types'
+                });
+
+                const gearboxChoices = new Choices('#gearboxSelect', {
+                    searchEnabled: false,
+                    removeItemButton: true,
+                    placeholderValue: 'Select gearbox types'
+                });
+
+                const sortChoices = new Choices('#sortSelect', {
+                    searchEnabled: false,
+                    shouldSort: false,
+                    itemSelectText: ''
+                });
+
+                document.getElementById('resetBtn').addEventListener('click',
+                    function () {
+                        makeChoices.setChoiceByValue('');
+                        modelChoices.removeActiveItems();
+                        engineChoices.removeActiveItems();
+                        gearboxChoices.removeActiveItems();
+                        sortChoices.setChoiceByValue('');
+
+                        const minPriceInput = document.getElementById('minPrice');
+                        const maxPriceInput = document.getElementById('maxPrice');
+                        const minYearInput = document.getElementById('minYear');
+                        const maxYearInput = document.getElementById('maxYear');
+                        const minPowerInput = document.getElementById('minPower');
+                        const maxPowerInput = document.getElementById('maxPower');
+
+                        minPriceInput.value = minPriceInput.parentElement
+                            .getAttribute('data-min');
+                        maxPriceInput.value = maxPriceInput.parentElement
+                            .getAttribute('data-max');
+                        minYearInput.value = minYearInput.parentElement
+                            .getAttribute('data-min');
+                        maxYearInput.value = maxYearInput.parentElement
+                            .getAttribute('data-max');
+                        minPowerInput.value = minPowerInput.parentElement
+                            .getAttribute('data-min');
+                        maxPowerInput.value = maxPowerInput.parentElement
+                            .getAttribute('data-max');
+                    });
+
+                async function showModelsByMake(e) {
+                    const selectedMake = e.target.value;
+                    if (!selectedMake) {
+                        modelChoices.disable();
+                        return;
+                    }
+
+                    modelChoices.enable();
+                    modelChoices.clearChoices();
+                    modelChoices.removeActiveItems();
+
+                    const clientItems = JSON.parse(
+                        '<%- JSON.stringify(itemsToMap) %>');
+
+                    const modelsByMake = [];
+                    for (let i = 0; i < clientItems.length; i++) {
+                        const item = clientItems[i];
+                        if (item.make === selectedMake && !modelsByMake.includes(
+                            item.model)) {
+                            modelsByMake.push(item.model);
+                        }
+                    }
+
+                    modelChoices.setChoices(
+                        modelsByMake.map(model => ({
+                            value: model,
+                            label: model
+                        })),
+                        'value',
+                        'label',
+                        true
+                    );
+                }
+                makeChoices.passedElement.element.addEventListener('change',
+                    showModelsByMake);
+                document.addEventListener('DOMContentLoaded', function () {
+                    const selectedMake = '<%= selectedMake %>';
+                    let selectedModels =
+                        '<%- selectedModels %>';
+
+                    selectedModels = selectedModels.split(',');
+
+                    if (selectedMake) {
+                        makeChoices.setChoiceByValue(selectedMake);
+                        showModelsByMake({
+                            target: {
+                                value: selectedMake
+                            }
+                        }).then(() => {
+                            selectedModels.forEach(model => {
+                                modelChoices.setChoiceByValue(
+                                    model);
+                            });
+                        });
+                    }
+                });
+            </script>
+    </body>
+
+</html>

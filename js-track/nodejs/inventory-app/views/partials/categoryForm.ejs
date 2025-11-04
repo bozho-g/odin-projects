@@ -1,0 +1,19 @@
+<div class="container">
+    <h1>
+        <%= title %>
+    </h1>
+    <form action="<%= action %>" method="POST" class="category-form">
+        <div class="form-group">
+            <label for="name">Category Name:</label>
+            <input type="text" value="<%= category.name %>" id="name" name="name" required>
+        </div>
+
+        <div class="form-group">
+            <%- include('../partials/adminInput') %>
+        </div>
+
+        <button type="submit" class="btn-apply">
+            <%= title %>
+        </button>
+    </form>
+</div>
