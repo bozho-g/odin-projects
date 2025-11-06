@@ -51,4 +51,6 @@ https://bozho-g.github.io/odin-projects/
 	https://message-board-theta.vercel.app/
 - Used Car Inventory App - inventory app with Express, EJS, and CRUD operations for different categories and vehicles
 	https://odin-projects-eta.vercel.app/
+- Members Only - simple authentication system with user login and access control
+	https://members-only-gamma.vercel.app/
 ---
