@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head.ejs', { title: "Posts" }) %>
+
+    <body>
+        <%- include('../partials/nav.ejs') %>
+
+            <div class="container">
+                <h1>Posts</h1>
+
+                <div class="join-club">
+                    <% if (!user) { %>
+                        <h2>The Authors Remain Hidden...</h2>
+                        <p>Mysterious shadows post from the void. Their identities? Classified. Their timestamps?
+                            Redacted.
+                            Want to know who lurks in the darkness? First, you must prove yourself worthy...</p>
+                        <a href="/login" class="btn">Enter the Shadows</a>
+                        <% } else if (!user.is_member) { %>
+                            <h2>You're Close, But Not Close Enough...</h2>
+                            <p>You've entered the lobby, but the real secrets lie beyond. Anonymous faces stare back
+                                at
+                                you.
+                                The timestamps mock you with their cryptic symbols. Take the final step and become
+                                one
+                                of us...</p>
+                            <a href="/join" class="btn">Unlock the Secrets</a>
+                            <% } else { %>
+                                <h2>Welcome to The Lounge</h2>
+                                <p>You've made it. The veil has been lifted. Names revealed. Timestamps decoded.
+                                    The truth is yours to behold. Speak freely, fellow member.</p>
+                                <a href="/create" class="btn">Share Your Wisdom</a>
+                                <% } %>
+                </div>
+
+                <% if (posts.length===0) { %>
+                    <p>No posts available.</p>
+                    <% } else { %>
+                        <ul class="posts">
+                            <% posts.forEach(function(post) { %>
+                                <li class="post">
+                                    <div class="content">
+                                        <h2 <%=user ? '' : 'class=redacted' %>>
+                                            <%= user ? post.title : generateGibberish(post.title.length) %>
+                                        </h2>
+                                        <p <%=user ? '' : 'class=redacted' %>>
+                                            <%= user ? post.content : generateGibberish(post.content.length) %>
+                                        </p>
+                                    </div>
+                                    <div class="info">
+                                        <p <%=user && user.is_member ? '' : 'class=redacted' %>>By: <%= user &&
+                                                user.is_member ? post.username : 'Anonymous' %>
+                                        </p>
+                                        <p <%=user && user.is_member ? '' : 'class=redacted' %>>Posted on: <%= user &&
+                                                user.is_member ? post.created_at.toLocaleString() : 'Unknown(≖⩊≖)' %>
+                                    </div>
+                                    <% if (user && user.is_admin) { %>
+                                        <div class="actions">
+                                            <a href="/delete/<%= post.id %>" class="btn-delete">Delete</a>
+                                        </div>
+                                        <% } %>
+                                </li>
+                                <% }); %>
+                        </ul>
+                        <% } %>
+            </div>
+
+    </body>
+
+</html>

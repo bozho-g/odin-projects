@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs', { title: "Join the Lounge" }) %>
+
+    <body>
+        <%- include('./partials/nav.ejs') %>
+            <div class="auth-container">
+                <% if (user && user.is_member) { %>
+                    <div class="auth-card">
+                        <h1 class="auth-title">Wait a Minute...</h1>
+                        <p class="auth-subtitle">
+                            You're ALREADY in The Lounge! What are you doing here?
+                            Trying to join twice? That's not how this works, pal.
+                            ¯\_(ツ)_/¯
+                        </p>
+                        <p>
+                            You already have full access. Go enjoy your membership!
+                        </p>
+                        <a href="/" class="btn">
+                            Back to Posts
+                        </a>
+                    </div>
+                    <% } else { %>
+                        <div class="auth-card">
+                            <h1 class="auth-title">The Final Test</h1>
+                            <p>You stand at the threshold. Only those who know the secret passcode
+                                may
+                                enter The Lounge. Prove your worth.</p>
+
+                            <form class="auth-form" action="/join" method="post">
+
+                                <input id="passcode" name="passcode" type="password" required
+                                    placeholder="Enter the secret passcode" autocomplete="off">
+                                <% if (locals.error) { %>
+                                    <p class="error-message">
+                                        <%= error %>
+                                    </p>
+                                    <% } %>
+
+                                        <button type="submit" class="btn">Unlock Membership</button>
+                                        <p class="secret-hint">
+                                            <small>Hint: The password is the 67th element of the periodic
+                                                table.</small>
+                                        </p>
+                            </form>
+                        </div>
+                        <% } %>
+            </div>
+    </body>
+
+</html>
