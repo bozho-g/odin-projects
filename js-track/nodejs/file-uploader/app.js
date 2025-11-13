@@ -71,11 +71,9 @@ app.use((err, req, res, next) => {
 
   res.status(statusCode).render('error', {
     title: 'Error',
-    error: {
-      status: statusCode,
-      message: message,
-      stack: isDevelopment ? err.stack : undefined
-    }
+    status: statusCode,
+    message: message,
+    stack: isDevelopment ? err.stack : undefined
   });
 });
 
