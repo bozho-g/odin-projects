@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DIRECT_URL")
+}
+
+model Session {
+  id        String   @id
+  sid       String   @unique
+  data      String
+  expiresAt DateTime
+}
+
+model User {
+  id          Int          @id @default(autoincrement())
+  username    String       @unique
+  password    String
+  files       File[]
+  folders     Folder[]
+  sharedLinks SharedLink[]
+
+  @@map("users")
+}
+
+model File {
+  id          Int          @id @default(autoincrement())
+  url         String       @unique
+  storagePath String       @unique
+  size        Int
+  name        String
+  mimeType    String?
+  createdAt   DateTime     @default(now())
+  userId      Int
+  folderId    Int?
+  folder      Folder?      @relation(fields: [folderId], references: [id])
+  user        User         @relation(fields: [userId], references: [id])
+  sharedLinks SharedLink[]
+
+  @@map("files")
+}
+
+model Folder {
+  id             Int          @id @default(autoincrement())
+  url            String?      @unique
+  storagePath    String
+  name           String
+  userId         Int
+  parentFolderId Int?
+  files          File[]
+  parentFolder   Folder?      @relation("FolderToSubFolders", fields: [parentFolderId], references: [id], onDelete: Cascade)
+  subFolders     Folder[]     @relation("FolderToSubFolders")
+  user           User         @relation(fields: [userId], references: [id])
+  sharedLinks    SharedLink[]
+
+  @@map("folders")
+}
+
+model SharedLink {
+  id        String    @id @default(cuid())
+  fileId    Int?
+  folderId  Int?
+  userId    Int
+  createdAt DateTime  @default(now())
+  expiresAt DateTime?
+  file      File?     @relation(fields: [fileId], references: [id], onDelete: Cascade)
+  folder    Folder?   @relation(fields: [folderId], references: [id], onDelete: Cascade)
+  createdBy User      @relation(fields: [userId], references: [id])
+
+  @@map("shared_links")
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include ('../partials/head.ejs', { title }) %>
+
+    <body>
+        <%- include ('../partials/nav.ejs') %>
+
+            <main>
+                <div class="dashboard">
+                    <div class="main-content">
+                        <div class="public-file">
+                            <h2 class="dialog-title">Public File Information</h2>
+                            <div class="file-info">
+                                <p><strong>Name:</strong>
+                                    <%= link.file.name %>
+                                </p>
+                                <p><strong>Size:</strong>
+                                    <%= link.file.size %> bytes
+                                </p>
+                                <p><strong>Type:</strong>
+                                    <%= link.file.mimetype %>
+                                </p>
+                                <p><strong>Uploaded At:</strong>
+                                    <%= link.file.createdAt.toLocaleString() %>
+                                </p>
+                                <p><strong>Link Expires At:</strong>
+                                    <%= link.expiresAt.toLocaleString() %>
+                                </p>
+                                <a class="public-download btn" href="/public/file/<%= link.id %>/download">Download</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+    </body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head.ejs', { title: 'Frosty Drive' }) %>
+
+    <body>
+
+        <%- include('partials/nav.ejs') %>
+
+            <main>
+                <div class="dashboard">
+                    <% if(user) { %>
+                        <%- include('partials/sidebar.ejs') %>
+                            <div class="main-content">
+                                <div class="welcome-banner">
+                                    <h1 class="welcome-title">Welcome to Frosty Drive!</h1>
+                                </div>
+
+                                <%- include('partials/items.ejs', { itemClass: 'folders' , categoryTitle: 'Folders' ,
+                                    collection: folders }) %>
+
+                                    <%- include('partials/items.ejs', { itemClass: 'files' , categoryTitle: 'Files' ,
+                                        collection: files }) %>
+                            </div>
+                            <% } else { %>
+                                <div class="main-content no-sidebar">
+                                    <h1 class="main-heading">Store and share your files.</h1>
+                                    <p class="subtitle">Frosty Drive gives you secure cloud storage with easy file
+                                        sharing.</p>
+                                    <a href="/login" class="btn-large btn get-started">Get Started</a>
+                                </div>
+
+                                <% } %>
+                </div>
+            </main>
+    </body>
+
+</html>

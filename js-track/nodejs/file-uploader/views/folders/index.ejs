@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs', {
+title: folder.name
+}) %>
+
+<body>
+    <%- include('../partials/nav.ejs') %>
+    <main>
+        <div class="dashboard">
+            <% if (!isPublic) { %>
+            <%- include('../partials/sidebar.ejs') %>
+            
+            <% } %>
+            <div class="main-content">
+                <div class="welcome-banner">
+                    <% if (isPublic) { %>
+                        <div class="public-folder-info">
+<h2>Public Folder Information</h2>
+                      <a class="public-download-fldr"
+                                                    href="/public/folder/<%= sharedLink.id %>/download">
+                                                    <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M3 15C3 17.8284 3 19.2426 3.87868 20.1213C4.75736 21 6.17157 21 9 21H15C17.8284 21 19.2426 21 20.1213 20.1213C21 19.2426 21 17.8284 21 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M12 3V16M12 16L16 11.625M12 16L8 11.625" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                                                </a>
+                        </div>
+                    <% } %>
+                    <h1 class="folder-title">
+                        <% if (!isPublic) { %><a class="link"
+                            href="/">My
+                            Drive</a>
+<svg
+                            class="chevron" width="24px" height="24px"
+                            viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            stroke="currentColor">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                stroke-linejoin="round">
+                            </g>
+                            <g id="SVGRepo_iconCarrier">
+                                <path d="M9 6L15 12L9 18" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                            </g>
+                        </svg>
+                        
+                        <% } %>
+                        <% folder.links.forEach((link, i) => { %>
+                        <a class="link<%= link.name === folder.name ? ' active' : '' %>"
+                            href="<%= !isPublic ? `/folders/${link.id}` : link.accessLink %>">
+                            <%= link.name %>
+                        </a>
+                        <% if (i < folder.links.length - 1) { %>
+                            <svg
+                            class="chevron" width="24px" height="24px"
+                            viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            stroke="currentColor">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                stroke-linejoin="round">
+                            </g>
+                            <g id="SVGRepo_iconCarrier">
+                                <path d="M9 6L15 12L9 18" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                            </g>
+                        </svg>
+                        <% } %>
+                        <% }) %>
+                    </h1>
+                </div>
+                <%- include('../partials/items.ejs', {
+itemClass: 'folders',
+categoryTitle: 'Folders',
+collection: folder.subFolders
+}) %>
+                <%- include('../partials/items.ejs', {
+itemClass: 'files',
+categoryTitle: 'Files',
+collection: folder.files
+}) %>
+            </div>
+    </main>
+
+</body>
+
+</html>

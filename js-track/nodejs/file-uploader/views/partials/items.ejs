@@ -1,0 +1,77 @@
+<div class="<%= itemClass %>">
+    <h2 class="category-title">
+        <%= categoryTitle%>
+    </h2>
+    <ul class="list">
+        <% if (collection.length===0) { %>
+            <li class="no-items">
+                No <%= categoryTitle.toLowerCase() %> found.
+            </li>
+            <% } else { %>
+                <% collection.forEach(function(item) { %>
+                    <li class="item">
+                        <% if(itemClass==='folders' ) { %>
+
+                            <a class="item-link"
+                                href=" <%= isPublic ? '/public/folder/' + sharedLink.id + '/' + item.id : '/folders/' + item.id %>">
+                                <span class="item-name">
+                                    <%= item.name %>
+                                </span>
+                            </a>
+                            <% } else { %>
+                                <% if(!isPublic) { %>
+                                    <button class="item-link file-info-btn" data-id="<%= item.id %>"
+                                        data-href="/files/<%= item.id %>/info">
+                                        <span class="item-name">
+                                            <%= item.name %>
+                                        </span>
+                                    </button>
+                                    <% } else { %>
+                                        <a class="item-link"
+                                            href="/public/folder/<%= sharedLink.id %>/file/<%= item.id %>">
+                                            <span class="item-name">
+                                                <%= item.name %>
+                                            </span>
+                                        </a>
+                                        <% } %>
+                                            <% } %>
+                                                <% if(!isPublic) { %>
+                                                    <svg class="actions" width="24px" height="24px" viewBox="0 0 16 16"
+                                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                        class="bi bi-three-dots-vertical" stroke="currentColor">
+                                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                        <g id="SVGRepo_tracurrentColorerCarrier"
+                                                            stroke-linecurrentcap="round" stroke-linejoin="round"></g>
+                                                        <g id="SVGRepo_icurrentColoronCarrier">
+                                                            <path
+                                                                d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z">
+                                                            </path>
+                                                        </g>
+                                                    </svg>
+                                                    <div class="item-popup">
+                                                        <ul>
+                                                            <li>
+                                                                <a class="item-action download"
+                                                                    href="/<%= itemClass %>/<%= item.id %>/download">Download</a>
+                                                            </li>
+                                                            <li>
+                                                                <button class="item-action share"
+                                                                    data-id="<%= item.id %>"
+                                                                    data-href="/<%= itemClass %>/<%= item.id %>/share">Share</button>
+                                                            </li>
+                                                            <li>
+                                                                <div class="seperator"></div>
+                                                            </li>
+                                                            <li>
+                                                                <button class="item-action delete"
+                                                                    data-name="<%= item.name %>"
+                                                                    data-href="/<%= itemClass %>/<%= item.id %>/delete">Delete</button>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <% } %>
+                    </li>
+                    <% }); %>
+                        <% } %>
+    </ul>
+</div>

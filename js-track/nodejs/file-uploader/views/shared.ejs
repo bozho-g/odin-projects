@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head.ejs', { title: 'Frosty Drive' }) %>
+
+    <script src="/js/linkActions.js" type="module" defer></script>
+
+    <body>
+
+        <%- include('partials/nav.ejs') %>
+
+            <main>
+                <div class="dashboard">
+                    <%- include('partials/sidebar.ejs') %>
+                        <div class="main-content">
+                            <div class="welcome-banner">
+                                <h1 class="welcome-title">Shared Links</h1>
+                            </div>
+
+                            <% if (sharedLinks.length===0) { %>
+                                <p class="no-links-message">No shared links available.</p>
+                                <% } else { %>
+                                    <% sharedLinks.forEach(function(link) { %>
+                                        <div class="shared-link-card">
+                                            <% if(link.folderId) { %>
+                                                <a href="<%= '/folders/' + link.folderId %>" class="shared-item-link">
+                                                    <%= link.folder.name %>
+                                                </a>
+
+                                                <% } else { %>
+                                                    <button data-href="<%= '/files/' + link.fileId + '/info' %>"
+                                                        class="file-info-btn shared-item-link ">
+                                                        <%= link.file.name %>
+                                                    </button>
+                                                    <% } %>
+                                                        <div class="link-info">
+                                                            <div class="dates">
+                                                                <p class="shared-on">Shared on: <%= new
+                                                                        Date(link.createdAt).toLocaleString() %>
+                                                                </p>
+                                                                <p class="expires-on">Expires on: <%= new
+                                                                        Date(link.expiresAt).toLocaleString() %>
+                                                                </p>
+                                                            </div>
+
+                                                            <div class="buttons">
+                                                                <button class="copy-link-button btn"
+                                                                    data-link="<%= link.url %>">
+                                                                    Copy Link
+                                                                </button>
+                                                                <button
+                                                                    data-name="<%= link.folderId ? link.folder.name : link.file.name %>"
+                                                                    data-href="/shared/<%= link.id %>/delete"
+                                                                    data-type="link" class="delete btn">Delete
+                                                                    Link</button>
+                                                            </div>
+                                                        </div>
+
+                                        </div>
+                                        <% }); %>
+                                            <% } %>
+                        </div>
+                </div>
+            </main>
+    </body>
+
+</html>

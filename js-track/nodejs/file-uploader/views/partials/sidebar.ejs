@@ -1,0 +1,60 @@
+<script src="/js/popups.js" type="module" defer></script>
+<script src="/js/inputs.js" type="module" defer></script>
+<script src="/js/itemActions.js" type="module" defer></script>
+
+<div class="sidebar">
+    <button class="upload dim">New</button>
+    <div id="upload-popup" class="upload-popup popup">
+        <div class="action">
+            <button class="new-folder">New Folder</button>
+        </div>
+
+        <div class="action">
+            <form action="/upload-file" method="POST" enctype="multipart/form-data">
+                <label for="file" class="file-label">
+                    Upload File
+                    <input type="file" name="file" id="file" multiple />
+                    <input type="hidden" name="folderId" value="<%= locals.folder ? folder.id : '' %>" />
+                </label>
+            </form>
+        </div>
+
+        <div class="action">
+            <form action="/upload-folder" method="POST" enctype="multipart/form-data">
+                <label for="folder" class="file-label">
+                    Upload Folder
+                    <input type="file" name="folder" id="folder" webkitdirectory directory multiple />
+                    <input type="hidden" name="folderId" value="<%= locals.folder ? folder.id : '' %>" />
+                </label>
+            </form>
+        </div>
+
+        <p class="max-size">Max Size: 50MB</p>
+    </div>
+    <ul class="sidebar-menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/shared">Shared</a></li>
+    </ul>
+</div>
+
+<div id="popup-overlay" class="popup-overlay"></div>
+<div id="error-popup" class="error-popup popup">
+    <h2 class="error-title"></h2>
+    <p class="error-message"></p>
+    <button class="btn" type="button" id="close-error-popup">Close</button>
+</div>
+<div id="new-folder-popup" class="new-folder-popup popup">
+    <form action="/folders/create" method="POST">
+        <label for="folderName">New Folder</label>
+        <input type="text" id="folderName" name="folderName" autofocus />
+        <input type="hidden" name="parentFolderId" value="<%= locals.folder ? folder.id : '' %>" />
+        <div class="buttons">
+            <button class="btn dim" type="button" id="cancel-new-folder">Cancel</button>
+            <button class="btn" type="submit">Create</button>
+        </div>
+    </form>
+</div>
+
+<div id="loading-overlay" class="loading-overlay">
+    <div class="spinner"></div>
+</div>
