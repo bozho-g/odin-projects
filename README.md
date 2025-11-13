@@ -53,4 +53,6 @@ https://bozho-g.github.io/odin-projects/
 	https://odin-projects-eta.vercel.app/
 - Members Only - simple authentication system with user login and access control
 	https://members-only-gamma.vercel.app/
+- File Uploader - file upload system with Express and Multer
+	https://file-uploader-two-navy.vercel.app/
 ---
