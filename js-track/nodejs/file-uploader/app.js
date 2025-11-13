@@ -52,6 +52,33 @@ app.use(function (req, res, next) {
   res.status(404).render('error', { message: "Sorry, page not found" });
 });
 
+app.use((err, req, res, next) => {
+  console.error('Error:', err);
+
+  const isDevelopment = process.env.NODE_ENV === 'development';
+
+  let statusCode = err.statusCode || 500;
+  let message = err.message || 'Internal Server Error';
+  if (!isDevelopment) {
+    if (err.code === 'P1001' || err.message?.includes('database server')) {
+      message = 'Database connection error. Please try again later.';
+    } else if (err.code?.startsWith('P')) {
+      message = 'A database error occurred. Please try again.';
+    } else if (err.message?.includes('supabase')) {
+      message = 'Storage service error. Please try again later.';
+    }
+  }
+
+  res.status(statusCode).render('error', {
+    title: 'Error',
+    error: {
+      status: statusCode,
+      message: message,
+      stack: isDevelopment ? err.stack : undefined
+    }
+  });
+});
+
 app.use(function (err, req, res, next) {
   const status = err.status || 500;
 
