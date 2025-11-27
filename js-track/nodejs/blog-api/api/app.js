@@ -7,37 +7,33 @@ const cors = require('cors');
 const HttpError = require('./util/httpError');
 const PORT = process.env.PORT || 3000;
 
-// const allowedOrigins = [
-//     process.env.ADMIN_URL,
-//     process.env.PUBLIC_URL,
-//     'http://localhost:5173',
-//     'http://localhost:5174'
-// ].filter(Boolean);
-
-// app.use(cors({
-//     origin: (origin, callback) => {
-//         if (!origin || allowedOrigins.includes(origin)) {
-//             callback(null, true);
-//         } else {
-//             callback(new Error('Not allowed by CORS'));
-//         }
-//     },
-//     credentials: true,
-//     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-//     allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
-// }));
-
-// app.options(/.*/, cors());
+const allowedOrigins = [
+    process.env.ADMIN_URL,
+    process.env.PUBLIC_URL,
+    'http://localhost:5173',
+    'http://localhost:5174'
+].filter(Boolean);
 
 const corsOptions = {
-    origin: true, // reflect the request origin
+    origin: (origin, callback) => {
+        if (!origin) {
+            return callback(null, true);
+        }
+
+        if (allowedOrigins.includes(origin)) {
+            return callback(null, true);
+        }
+
+        console.warn('Blocked CORS origin:', origin);
+        return callback(new Error('Not allowed by CORS'));
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
 };
 
 app.use(cors(corsOptions));
-app.options(/.*/, cors(corsOptions)); // for Express 5 preflight
+app.options(/.*/, cors(corsOptions));
 
 const postRoutes = require('./routes/posts');
 const authRoutes = require('./routes/auth');
