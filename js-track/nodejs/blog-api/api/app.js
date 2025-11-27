@@ -5,6 +5,7 @@ require('./middleware/passport');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const HttpError = require('./util/httpError');
+const PORT = process.env.PORT || 3000;
 
 const allowedOrigins = [
     process.env.ADMIN_URL,
@@ -56,6 +57,6 @@ app.use((err, req, res, next) => {
     res.status(status).json(payload);
 });
 
-app.listen(3000, () => {
-    console.log('Server is running on http://localhost:3000');
+app.listen(PORT, () => {
+    console.log(`Server is running on port: ${PORT}`);
 });
