@@ -1,0 +1,354 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--sidebar);
+    color: var(--sidebar-foreground);
+    box-shadow: var(--shadow-md);
+}
+
+#navbar-brand {
+    font-size: 2rem;
+}
+
+.right {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+
+    button {
+        margin-bottom: 0;
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+.navbar a {
+    color: var(--sidebar-primary-foreground);
+    font-weight: bold;
+    font-size: 1.3rem;
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: var(--secondary-foreground);
+    }
+}
+
+#root>* {
+    padding: 2rem 3rem;
+}
+
+.home {
+    text-align: center;
+    line-height: 1.6;
+}
+
+.post {
+    background-color: var(--card);
+    color: var(--card-foreground);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.3s ease;
+    display: flex;
+    gap: 1.5rem;
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: var(--shadow-md);
+    }
+}
+
+.content {
+    flex: 1;
+    line-height: 1.6;
+    align-content: center;
+    word-break: break-word;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hover-bg-primary-90:hover {
+    background-color: color-mix(in oklab, var(--primary) 90%, transparent);
+}
+
+.hover-bg-destructive-90:hover {
+    background-color: color-mix(in oklab, var(--destructive) 90%, transparent);
+}
+
+.btn {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+}
+
+.delete {
+    background-color: var(--destructive);
+    color: var(--foreground);
+}
+
+.title {
+    margin-bottom: 0.5rem;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.card {
+    background-color: var(--card);
+    color: var(--card-foreground);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    max-width: 300px;
+    margin: 5rem auto;
+}
+
+.form h2 {
+    margin-bottom: 1rem;
+}
+
+.form p {
+    margin-bottom: 1.5rem;
+    color: var(--muted-foreground);
+}
+
+.form label {
+    display: block;
+    font-weight: 600;
+    color: var(--card-foreground);
+}
+
+.form input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--input);
+    border-radius: 7px;
+    background-color: color-mix(in oklab, var(--input)30%, transparent);
+    color: var(--foreground);
+    outline: none;
+
+    &:focus {
+        outline: 2px solid color-mix(in oklab, var(--ring)50%, transparent);
+    }
+}
+
+.form input[type="checkbox"] {
+    width: auto;
+    margin-left: 0.5rem;
+    zoom: 1.2;
+}
+
+.form textarea {
+    width: 100%;
+    height: 150px;
+    padding: 0.5rem;
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--input);
+    border-radius: 7px;
+    background-color: color-mix(in oklab, var(--input)30%, transparent);
+    color: var(--foreground);
+    outline: none;
+    resize: vertical;
+
+    &:focus {
+        outline: 2px solid color-mix(in oklab, var(--ring)50%, transparent);
+    }
+}
+
+.modal-overlay {
+    position: fixed;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--card);
+    color: var(--card-foreground);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    max-width: 400px;
+    width: 90%;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.error {
+    color: var(--destructive);
+    margin-top: 0.5rem;
+}
+
+.transparent-btn {
+    background-color: color-mix(in oklab, var(--input)30%, transparent);
+    border: 1px solid var(--input);
+    border-radius: 6px;
+    color: var(--foreground);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: color-mix(in oklab, var(--input)50%, transparent);
+    }
+}
+
+.posts-list-header {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.full-post {
+    background-color: var(--card);
+    color: var(--card-foreground);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    max-width: 800px;
+    margin: 2rem auto;
+    word-break: break-word;
+    line-height: 1.3;
+}
+
+.full-post .meta {
+    color: var(--muted-foreground);
+    margin: 0.5rem 0 1.5rem 0;
+    font-size: 0.9rem;
+}
+
+.comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    list-style: none;
+}
+
+.comment {
+    background-color: var(--background);
+    padding: 1rem;
+    border-radius: 6px;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    line-height: 1.6;
+}
+
+.comment .delete-svg {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    color: var(--destructive);
+    cursor: pointer;
+}
+
+.comments-title {
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.icon-plus {
+    color: #fff;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.icon-plus svg {
+    display: block;
+    width: 28px;
+    height: 28px;
+}
+
+.comment-form {
+    padding: 1rem;
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--input);
+    border-radius: 7px;
+}
+
+.comment-form:has(textarea:focus) {
+    outline: 2px solid color-mix(in oklab, var(--ring)50%, transparent);
+}
+
+.comment-form textarea {
+    width: 100%;
+
+    outline: none;
+    resize: none;
+    border: none;
+    background-color: inherit;
+    color: inherit;
+    margin-bottom: 0.5rem;
+}
+
+.comment-actions {
+    display: none;
+    gap: 0.5rem;
+}
+
+.comment-actions.show {
+    display: flex;
+}
+
+.comment-actions button {
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.secondary-btn {
+    background-color: var(--secondary);
+    color: var(--secondary-foreground);
+
+
+    &:hover {
+        background-color: color-mix(in oklab, var(--secondary)80%, transparent);
+    }
+}
