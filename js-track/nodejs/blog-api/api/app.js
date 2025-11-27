@@ -27,7 +27,7 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
 }));
 
-app.options('(.*)', cors());
+app.options(/.*/, cors());
 
 const postRoutes = require('./routes/posts');
 const authRoutes = require('./routes/auth');
