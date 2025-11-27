@@ -55,4 +55,7 @@ https://bozho-g.github.io/odin-projects/
 	https://members-only-gamma.vercel.app/
 - File Uploader - file upload system with Express and Multer
 	https://file-uploader-two-navy.vercel.app/
+- Blog API - RESTful API for blog posts with Express and two frontend clients(admin and public, made with React)
+	- https://blog-api-admin-bozho.netlify.app/ - Admin client
+	- https://blog-api-public-bozho.netlify.app/ - Public client
 ---
