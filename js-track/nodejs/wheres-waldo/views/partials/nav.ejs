@@ -1,0 +1,26 @@
+<nav>
+    <div class="nav-links">
+        <a class="home" href="/">Where's Waldo?</a>
+        <a href="/leaderboards">Leaderboards</a>
+    </div>
+
+    <% if (isGame) { %>
+        <div class="nav-game-info">
+            <div class="timer">
+                Time: <span id="time">00:00</span>
+            </div>
+
+            <div class="characters-list">
+                <% characters.forEach(function(character) { %>
+                    <div class="character-item <%= found[character.id] ? 'found' : '' %>"
+                        data-character-id="<%= character.id %>">
+                        <img src="<%= character.imgUrl %>" alt="<%= character.name %>" class="character-icon">
+                        <span class="character-name">
+                            <%= character.name %>
+                        </span>
+                    </div>
+                    <% }); %>
+            </div>
+        </div>
+        <% } %>
+</nav>

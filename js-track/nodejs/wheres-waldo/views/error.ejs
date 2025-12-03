@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head.ejs', { title: "Error" }) %>
+
+    <body>
+        <%- include('partials/nav.ejs', { isGame: false }) %>
+            <div class="error-container">
+                <h1>Error</h1>
+                <p>
+                    <%= message %>
+                </p>
+                <a href="/">Go back home</a>
+            </div>
+    </body>
+
+</html>

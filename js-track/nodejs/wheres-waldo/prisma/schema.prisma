@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./database.db"
+}
+
+model Leaderboard {
+  id        Int      @id @default(autoincrement())
+  username  String
+  time      Float
+  createdAt DateTime @default(now())
+  picture   Picture? @relation(fields: [pictureId], references: [id])
+  pictureId Int?
+}
+
+model Picture {
+  id           Int           @id @default(autoincrement())
+  name         String
+  url          String
+  leaderboards Leaderboard[]
+  characters   Character[]
+}
+
+model Character {
+  id        Int     @id @default(autoincrement())
+  name      String
+  imgUrl    String
+  x1        Float
+  y1        Float
+  x2        Float
+  y2        Float
+  picture   Picture @relation(fields: [pictureId], references: [id])
+  pictureId Int
+}

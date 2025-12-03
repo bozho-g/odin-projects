@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head.ejs', { title: "Leaderboards" }) %>
+
+    <body>
+        <%- include('../partials/nav', {isGame: false}) %>
+            <h1 class="title center">Leaderboards</h1>
+            <div class="container">
+                <% pictures.forEach(picture=> { %>
+                    <div>
+                        <a href="/leaderboards/<%= picture.id %>" class="game-image">
+                            <h2>
+                                <%= picture.name %>
+                            </h2>
+                            <img src="<%= picture.url %>" alt="<%= picture.name %>">
+                        </a>
+                    </div>
+                    <% }) %>
+            </div>
+    </body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head.ejs', { title: "Leaderboard " + picture.name }) %>
+
+    <body>
+        <%- include('../partials/nav', {isGame: false}) %>
+            <h1 class="title center">Leaderboards for <a class="play" href="/game/<%= picture.id %>"> Picture
+                    <%= picture.name %>
+                </a>
+            </h1>
+
+            <% if (leaderboards.length===0) { %>
+                <p class="center">No entries yet. Be the first to finish!</p>
+                <% } else { %>
+                    <div class="leaderboards-container">
+                        <p>Top times:</p>
+                        <table class="leaderboards-table">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Player</th>
+                                    <th>Time (seconds)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% leaderboards.forEach(function(entry, index) { %>
+                                    <tr>
+                                        <td>
+                                            <%= index + 1 %>
+                                        </td>
+                                        <td>
+                                            <%= entry.username %>
+                                        </td>
+                                        <td>
+                                            <%= (entry.time / 1000).toFixed(2) %>
+                                        </td>
+                                    </tr>
+                                    <% }); %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <% } %>
+    </body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head.ejs', { title: "Game " + picture.name }) %>
+    <script src='https://unpkg.com/panzoom@9.4.0/dist/panzoom.min.js'></script>
+
+    <body class="game-page">
+        <%- include('../partials/nav', {isGame: true, characters, found, startTime, pictureId: picture.id}) %>
+            <div class="game">
+                <img src="<%= picture.url %>" alt="<%= picture.name %>" id="game-image">
+            </div>
+
+            <div class="click-menu">
+                <div class="click-box"></div>
+                <div class="click-characters">
+                    <ul class="click-list">
+                        <% characters.forEach(function(character) { %>
+                            <li class="click-item" data-character-id="<%= character.id %>">
+                                <button class="click-character-name">
+                                    <%= character.name %>
+                                </button>
+                            </li>
+                            <% }); %>
+                </div>
+            </div>
+    </body>
+
+    <script>
+        const initialStartTime = <%= startTime %>;
+        const initialPictureId = <%= picture.id %>;
+
+        window.GAME_CONFIG = { initialStartTime, initialPictureId };
+    </script>
+
+    <script type="module" src="/js/game.js"></script>
+
+</html>
