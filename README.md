@@ -58,4 +58,6 @@ https://bozho-g.github.io/odin-projects/
 - Blog API - RESTful API for blog posts with Express and two frontend clients(admin and public, made with React)
 	- https://blog-api-admin-bozho.netlify.app/ - Admin client
 	- https://blog-api-public-bozho.netlify.app/ - Public client
+- Where's Waldo Game - find hidden characters in images
+	https://odin-projects-production-620f.up.railway.app/
 ---
