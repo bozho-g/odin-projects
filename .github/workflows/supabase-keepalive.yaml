@@ -1,7 +1,8 @@
-name: Supabase Keepalive
+name: Supabase Keepalive (4 projects)
 
 on:
   schedule:
+    # Every 3 days at 03:17 UTC
     - cron: "17 3 */3 * *"
   workflow_dispatch: {}
 
@@ -9,16 +10,43 @@ jobs:
   keepalive:
     runs-on: ubuntu-latest
     steps:
-      - name: Insert keepalive row
+      - name: Keepalive (Project 1)
+        continue-on-error: true
         env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          URL: ${{ secrets.SUPABASE1_URL }}
+          KEY: ${{ secrets.SUPABASE1_SERVICE_ROLE_KEY }}
         run: |
           set -e
+          curl -sS -X POST "$URL/rest/v1/keepalive_log" \
+            -H "apikey: $KEY" \
+            -H "Authorization: Bearer $KEY" \
+            -H "Content-Type: application/json" \
+            -H "Prefer: return=minimal" \
+            --data '[{}]'
 
-          curl -sS -X POST "$SUPABASE_URL/rest/v1/keepalive_log" \
-            -H "apikey: $SUPABASE_KEY" \
-            -H "Authorization: Bearer $SUPABASE_KEY" \
+      - name: Keepalive (Project 2)
+        continue-on-error: true
+        env:
+          URL: ${{ secrets.SUPABASE2_URL }}
+          KEY: ${{ secrets.SUPABASE2_SERVICE_ROLE_KEY }}
+        run: |
+          set -e
+          curl -sS -X POST "$URL/rest/v1/keepalive_log" \
+            -H "apikey: $KEY" \
+            -H "Authorization: Bearer $KEY" \
+            -H "Content-Type: application/json" \
+            -H "Prefer: return=minimal" \
+            --data '[{}]'
+
+        continue-on-error: true
+        env:
+          URL: ${{ secrets.SUPABASE4_URL }}
+          KEY: ${{ secrets.SUPABASE4_SERVICE_ROLE_KEY }}
+        run: |
+          set -e
+          curl -sS -X POST "$URL/rest/v1/keepalive_log" \
+            -H "apikey: $KEY" \
+            -H "Authorization: Bearer $KEY" \
             -H "Content-Type: application/json" \
             -H "Prefer: return=minimal" \
             --data '[{}]'
