@@ -1,4 +1,4 @@
-name: Supabase Keepalive (4 projects)
+name: Supabase Keepalive
 'on':
   schedule:
     - cron: 17 3 */3 * *
@@ -27,4 +27,9 @@ jobs:
           KEY: '${{ secrets.SUPABASE2_SERVICE_ROLE_KEY }}'
         run: |
           set -e
-          curl -sS -X POST "$URL/rest/v1/
+          curl -sS -X POST "$URL/rest/v1/keepalive_log" \
+            -H "apikey: $KEY" \
+            -H "Authorization: Bearer $KEY" \
+            -H "Content-Type: application/json" \
+            -H "Prefer: return=minimal" \
+            --data '[{}]'
