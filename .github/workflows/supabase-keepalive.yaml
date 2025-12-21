@@ -33,3 +33,29 @@ jobs:
             -H "Content-Type: application/json" \
             -H "Prefer: return=minimal" \
             --data '[{}]'
+      - name: Keepalive (Project 3)
+        continue-on-error: true
+        env:
+          URL: '${{ secrets.SUPABASE3_URL }}'
+          KEY: '${{ secrets.SUPABASE3_SERVICE_ROLE_KEY }}'
+        run: |
+          set -e
+          curl -sS -X POST "$URL/rest/v1/keepalive_log" \
+            -H "apikey: $KEY" \
+            -H "Authorization: Bearer $KEY" \
+            -H "Content-Type: application/json" \
+            -H "Prefer: return=minimal" \
+            --data '[{}]'
+      - name: Keepalive (Project 4)
+        continue-on-error: true
+        env:
+          URL: '${{ secrets.SUPABASE4_URL }}'
+          KEY: '${{ secrets.SUPABASE4_SERVICE_ROLE_KEY }}'
+        run: |
+          set -e
+          curl -sS -X POST "$URL/rest/v1/keepalive_log" \
+            -H "apikey: $KEY" \
+            -H "Authorization: Bearer $KEY" \
+            -H "Content-Type: application/json" \
+            -H "Prefer: return=minimal" \
+            --data '[{}]'
