@@ -1,5 +1,5 @@
 .auth-container {
-  max-width: 960px;
+  max-width: 1000px;
   padding: 4rem 0;
   margin: 0 auto;
   display: flex;
@@ -1031,4 +1031,34 @@ button[disabled] {
   border-radius: 8px;
   background: color-mix(in oklab, var(--card) 96%, transparent);
   border: 1px solid var(--border);
+}
+
+.wake-banner {
+  background: color-mix(in oklab, var(--destructive) 20%, transparent);
+  border: 1px solid var(--destructive);
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin-bottom: 16px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wake-banner-dismiss {
+  background: none;
+  border: none;
+  color: var(--destructive);
+  cursor: pointer;
+  padding: 4px;
+
+  border-radius: 6px;
+  width: 32px;
+  height: 32px;
+  margin-left: 0.8rem;
+  transition: background-color 0.15s ease;
+}
+
+.wake-banner-dismiss:hover {
+  background: color-mix(in oklab, var(--destructive) 30%, transparent);
 }
