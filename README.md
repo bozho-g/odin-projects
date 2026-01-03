@@ -59,5 +59,5 @@ https://bozho-g.github.io/odin-projects/
 	- https://blog-api-admin-bozho.netlify.app/ - Admin client
 	- https://blog-api-public-bozho.netlify.app/ - Public client
 - Where's Waldo Game - find hidden characters in images
-	https://odin-projects-production-620f.up.railway.app/
+	https://odin-projects-taupe.vercel.app/
 ---
