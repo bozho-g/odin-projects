@@ -2,6 +2,7 @@ const express = require('express');
 const { createServer } = require('http');
 const app = express();
 const server = createServer(app);
+const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
 require('./middleware/passport');
@@ -35,6 +36,8 @@ const corsOptions = {
     allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
 };
 
+app.set('trust proxy', 1);
+
 app.use(cors(corsOptions));
 app.options(/.*/, cors(corsOptions));
 
@@ -53,10 +56,12 @@ const sessionMiddleware = session({
     }
 });
 
-app.use(sessionMiddleware);
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+
+app.use(sessionMiddleware);
+
 app.use(passport.initialize());
 app.use(passport.session());
 
