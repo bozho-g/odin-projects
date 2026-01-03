@@ -60,4 +60,6 @@ https://bozho-g.github.io/odin-projects/
 	- https://blog-api-public-bozho.netlify.app/ - Public client
 - Where's Waldo Game - find hidden characters in images
 	https://odin-projects-taupe.vercel.app/
+- Messaging App - real-time messaging application with socket.io
+	https://odin-projects-vsez.vercel.app/
 ---
