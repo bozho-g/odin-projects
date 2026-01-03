@@ -1,0 +1,83 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model chat_participants {
+  chat_id   Int      @default(autoincrement())
+  user_id   Int
+  joined_at DateTime @default(now()) @db.Timestamptz(6)
+  role      String?
+  chats     chats    @relation(fields: [chat_id], references: [id], onDelete: Cascade, map: "chats_participants_chat_id_fkey")
+  users     users    @relation(fields: [user_id], references: [id], onDelete: Cascade, map: "chats_participants_user_id_fkey")
+
+  @@id([chat_id, user_id], map: "chats_participants_pkey")
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model chats {
+  id                Int                 @id @default(autoincrement())
+  name              String?             @db.VarChar
+  created_at        DateTime            @default(now()) @db.Timestamptz(6)
+  is_group          Boolean             @default(false)
+  created_by        Int
+  chat_participants chat_participants[]
+  users             users               @relation(fields: [created_by], references: [id], onDelete: SetNull)
+  messages          messages[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model friend_requests {
+  id                                        Int      @id(map: "friends_requests_pkey") @default(autoincrement())
+  from_user_id                              Int
+  to_user_id                                Int
+  status                                    String   @default("pending") @db.VarChar
+  created_at                                DateTime @default(now()) @db.Timestamptz(6)
+  users_friend_requests_from_user_idTousers users    @relation("friend_requests_from_user_idTousers", fields: [from_user_id], references: [id], onDelete: Cascade, map: "friends_requests_from_user_id_fkey")
+  users_friend_requests_to_user_idTousers   users    @relation("friend_requests_to_user_idTousers", fields: [to_user_id], references: [id], onDelete: Cascade, map: "friends_requests_to_user_id_fkey")
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model messages {
+  id              Int       @id @default(autoincrement())
+  created_at      DateTime  @default(now()) @db.Timestamptz(6)
+  text            String?
+  edited_at       DateTime? @db.Timestamptz(6)
+  chat_id         Int
+  sender_id       Int
+  attachment_url  String?
+  attachment_type String?
+  chats           chats     @relation(fields: [chat_id], references: [id], onDelete: Cascade)
+  users           users     @relation(fields: [sender_id], references: [id], onDelete: Cascade)
+}
+
+model session {
+  sid    String   @id @db.VarChar
+  sess   Json     @db.Json
+  expire DateTime @db.Timestamp(6)
+
+  @@index([expire], map: "IDX_session_expire")
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model users {
+  id                                                  Int                 @id @default(autoincrement())
+  username                                            String              @unique @db.VarChar
+  password_hash                                       String              @db.VarChar
+  display_name                                        String              @db.VarChar
+  pfp_url                                             String?             @default("https://api.dicebear.com/9.x/thumbs/svg?seed=Mason") @db.VarChar
+  created_at                                          DateTime            @default(now()) @db.Timestamptz(6)
+  last_seen                                           DateTime?           @db.Timestamptz(6)
+  chat_participants                                   chat_participants[]
+  chats                                               chats[]
+  friend_requests_friend_requests_from_user_idTousers friend_requests[]   @relation("friend_requests_from_user_idTousers")
+  friend_requests_friend_requests_to_user_idTousers   friend_requests[]   @relation("friend_requests_to_user_idTousers")
+  messages                                            messages[]
+}
