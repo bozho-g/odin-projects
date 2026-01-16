@@ -1,0 +1,23 @@
+.userCard {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: var(--foreground);
+
+    transition: background-color 0.18s ease;
+}
+
+.userCard:hover {
+    background-color: color-mix(in oklab, var(--input) 90%, rgba(0, 0, 0, 0.04));
+}
+
+.userPfp {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.username {
+    margin: 0 auto 0 1rem;
+}

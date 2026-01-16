@@ -1,0 +1,12 @@
+.dashboard {
+    position: relative;
+    flex: 1 1 auto;
+    overflow-y: auto;
+}
+
+.noComments {
+    text-align: center;
+    color: var(--muted-foreground);
+    font-size: 1.2rem;
+    margin-top: 2rem;
+}

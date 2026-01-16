@@ -1,0 +1,19 @@
+.commentForm {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-bottom: 2px solid var(--border);
+}
+
+.formActions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+.commentForm.editing {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: var(--card);
+}

@@ -1,0 +1,81 @@
+.postFormContainer {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border-bottom: 2px solid var(--border);
+}
+
+.profilePicture {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.selectedPicture {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.postForm {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.formActions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.formActions svg {
+    cursor: pointer;
+    color: var(--sidebar-primary);
+}
+
+.selectedPictureContainer {
+    position: relative;
+    width: fit-content;
+
+    &:hover .removePictureButton,
+    &:focus-within .removePictureButton {
+        opacity: 1;
+        transform: scale(0.9);
+
+    }
+}
+
+.removePictureButton {
+    opacity: 0;
+    transform: scale(0.8);
+
+    background: var(--secondary);
+    border: none;
+    cursor: pointer;
+    color: var(--muted-foreground);
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    transition: background-color 0.15s ease, color 0.15s ease, opacity 0.25s ease, transform 0.25s ease;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+
+    &:hover {
+        background-color: var(--accent);
+        color: var(--foreground);
+    }
+}
+
+.actionButtons {
+    display: flex;
+    gap: 1rem;
+}

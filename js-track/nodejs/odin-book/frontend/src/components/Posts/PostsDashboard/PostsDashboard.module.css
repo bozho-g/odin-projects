@@ -1,0 +1,11 @@
+.postsDashboard {
+    position: relative;
+    flex: 1;
+}
+
+.noPosts {
+    text-align: center;
+    color: var(--muted-foreground);
+    font-size: 1.2rem;
+    margin-top: 2rem;
+}

@@ -1,0 +1,164 @@
+.postCard {
+    border-bottom: 2px solid var(--border);
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    word-break: break-all;
+    color: var(--foreground);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.postCard.comment {
+    cursor: default;
+}
+
+.postCard:hover {
+    background-color: color-mix(in oklab, var(--input)20%, transparent);
+}
+
+.postPfp {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.postBody {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.postHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    position: relative;
+}
+
+.postAuthor {
+    font-weight: 600;
+    color: var(--foreground);
+    transition: color 0.3s ease;
+
+    &:hover {
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+    }
+}
+
+.postDate {
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+}
+
+.postImage {
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+}
+
+.postActions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.commentCount {
+    color: var(--muted-foreground);
+    transition: color 0.3s ease;
+
+    &:hover {
+        cursor: pointer;
+        color: var(--chart-2);
+    }
+}
+
+.likeCount {
+    color: var(--muted-foreground);
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.likeCount:hover {
+    color: var(--destructive);
+}
+
+.likeCount.liked {
+    color: var(--destructive)
+}
+
+.likeCount svg {
+    transition: transform 0.2s ease;
+}
+
+.likeCount.liked svg {
+    animation: heart-pop 0.3s ease;
+}
+
+@keyframes heart-pop {
+    0% {
+        transform: scale(1);
+    }
+
+    30% {
+        transform: scale(1.3);
+    }
+
+    55% {
+        transform: scale(0.95);
+    }
+
+    75% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.postActions>* {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    gap: 0.25rem;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.postOptionsIcon {
+    width: 1.5rem;
+    height: 1.5rem;
+    opacity: 0;
+    cursor: pointer;
+    margin-left: auto;
+    color: var(--muted-foreground);
+    transition: color 0.3s ease, opacity 0.2s ease;
+
+    &:hover {
+        color: var(--foreground);
+    }
+}
+
+.postCard:hover .postOptionsIcon {
+    opacity: 1;
+}
+
+.editing {
+    cursor: default;
+
+    &:hover {
+        background-color: transparent;
+    }
+}

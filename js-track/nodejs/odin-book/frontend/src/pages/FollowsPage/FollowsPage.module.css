@@ -1,0 +1,51 @@
+.container>* {
+    padding: 1rem;
+}
+
+.emptyState {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: var(--muted-foreground);
+    font-size: 1.2rem;
+}
+
+.tabs {
+    display: flex;
+    gap: 1rem;
+    border-bottom: 2px solid var(--border);
+    background-color: var(--muted);
+}
+
+.tab {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    border: none;
+    background-color: var(--muted);
+    color: var(--muted-foreground);
+    font-size: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+        background-color: color-mix(in oklab, var(--input)50%, transparent);
+        color: var(--foreground);
+    }
+}
+
+.tab.active {
+    font-weight: bold;
+    color: var(--foreground);
+    background-color: var(--input);
+}
+
+.badge {
+    background-color: var(--ring);
+    color: var(--foreground);
+    border-radius: 9999px;
+    padding: 0.1rem 0.6rem;
+    font-size: 0.85rem;
+    font-weight: bold;
+}

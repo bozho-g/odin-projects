@@ -1,0 +1,20 @@
+.loadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    position: fixed;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.container>* {
+    padding: 1rem;
+    border-radius: 0.5rem;
+}

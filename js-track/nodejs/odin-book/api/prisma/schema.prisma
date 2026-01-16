@@ -1,0 +1,107 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id           String        @id @default(cuid())
+  username     String        @unique
+  password     String
+  pfpUrl       String?
+  pfpPublicId  String?
+  posts        Post[]
+  comments     Comment[]
+  likes        Like[]
+  commentLikes CommentLike[]
+  following    Follow[]      @relation("UserFollowing")
+  followers    Follow[]      @relation("UserFollowers")
+  createdAt    DateTime      @default(now())
+
+  @@map("users")
+}
+
+model Post {
+  id            String    @id @default(cuid())
+  content       String?
+  imageUrl      String?
+  imagePublicId String?
+  author        User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId      String
+  likes         Like[]
+  comments      Comment[]
+  createdAt     DateTime  @default(now())
+
+  @@index([authorId, createdAt])
+  @@map("posts")
+}
+
+model Like {
+  id     String @id @default(cuid())
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId String
+
+  @@unique([userId, postId])
+  @@map("likes")
+}
+
+model Comment {
+  id        String        @id @default(cuid())
+  content   String
+  author    User          @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId  String
+  post      Post          @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    String
+  createdAt DateTime      @default(now())
+  likes     CommentLike[]
+
+  @@index([postId, createdAt])
+  @@map("comments")
+}
+
+model CommentLike {
+  id        String  @id @default(cuid())
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  comment   Comment @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  commentId String
+
+  @@unique([userId, commentId])
+  @@map("comment_likes")
+}
+
+model Follow {
+  followerId String
+  followeeId String
+  status     FollowStatus @default(PENDING)
+
+  follower User @relation("UserFollowing", fields: [followerId], references: [id], onDelete: Cascade)
+  followee User @relation("UserFollowers", fields: [followeeId], references: [id], onDelete: Cascade)
+
+  @@id([followerId, followeeId])
+  @@map("follows")
+}
+
+enum FollowStatus {
+  PENDING
+  ACCEPTED
+}
+
+model session {
+  sid    String   @id @db.VarChar
+  sess   Json     @db.Json
+  expire DateTime @db.Timestamp(6)
+
+  @@index([expire], map: "IDX_session_expire")
+}

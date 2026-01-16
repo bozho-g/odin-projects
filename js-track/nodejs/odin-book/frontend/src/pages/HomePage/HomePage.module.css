@@ -1,0 +1,47 @@
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    height: 100vh;
+}
+
+.container> :first-child {
+    flex: 0 1 25%;
+}
+
+.container> :last-child {
+    flex: 0 1 75%;
+}
+
+.mainContent {
+    border-right: 2px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    position: relative;
+}
+
+.tabButtons {
+    border-bottom: 2px solid var(--border);
+    display: flex;
+
+    button {
+        flex: 1;
+        padding: 1rem;
+        border: none;
+        background-color: var(--background);
+        color: var(--foreground);
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: var(--card);
+        }
+
+        &.active {
+            border-bottom: 4px solid var(--ring);
+            font-weight: bold;
+        }
+    }
+}
