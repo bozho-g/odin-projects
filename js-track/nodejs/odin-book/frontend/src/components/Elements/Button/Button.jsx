@@ -1,4 +1,4 @@
-import styles from "./button.module.css";
+import styles from "./Button.module.css";
 
 export function Button({ variant = "primary", className = "", ...props }) {
     return (
