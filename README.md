@@ -62,4 +62,6 @@ https://bozho-g.github.io/odin-projects/
 	https://odin-projects-taupe.vercel.app/
 - Messaging App - real-time messaging application with socket.io
 	https://odin-projects-vsez.vercel.app/
+- Odin Book - social media platform clone with user profiles, posts, comments, follows and likes
+	https://odin-book-frontend-three.vercel.app/
 ---
