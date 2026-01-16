@@ -9,10 +9,16 @@ import { PostPage } from './pages/PostPage/PostPage';
 import { UsersPage } from './pages/UsersPage/UsersPage';
 import { FollowsModal } from './components/FollowsModal/FollowsModal';
 import { FollowsPage } from './pages/FollowsPage/FollowsPage';
+import WakeBanner from './components/Elements/WakeBanner/WakeBanner';
 
 function App() {
   return (
     <>
+      <WakeBanner
+        storageKey="railwayWakeBannerDismissed"
+        message="This site is hosted on a free render tier that can sleep. The first request may take 30-60 seconds while it wakes up."
+      />
+
       <Toaster position="top-right" richColors closeButton toastOptions={{
         style: {
           background: "var(--background)",

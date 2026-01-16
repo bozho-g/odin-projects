@@ -141,6 +141,44 @@
   transform: translate(-50%, -50%);
 }
 
+.wake-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: rgba(30, 41, 59, 0.92);
+  color: white;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.wake-banner-inner {
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.wake-banner-dismiss {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.wake-banner-dismiss:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
 @keyframes rotation {
   0% {
     transform: rotate(0deg);
@@ -1031,34 +1069,4 @@ button[disabled] {
   border-radius: 8px;
   background: color-mix(in oklab, var(--card) 96%, transparent);
   border: 1px solid var(--border);
-}
-
-.wake-banner {
-  background: color-mix(in oklab, var(--destructive) 20%, transparent);
-  border: 1px solid var(--destructive);
-  border-radius: 8px;
-  padding: 10px 16px;
-  margin-bottom: 16px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.wake-banner-dismiss {
-  background: none;
-  border: none;
-  color: var(--destructive);
-  cursor: pointer;
-  padding: 4px;
-
-  border-radius: 6px;
-  width: 32px;
-  height: 32px;
-  margin-left: 0.8rem;
-  transition: background-color 0.15s ease;
-}
-
-.wake-banner-dismiss:hover {
-  background: color-mix(in oklab, var(--destructive) 30%, transparent);
 }
