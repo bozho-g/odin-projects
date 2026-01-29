@@ -8,7 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Keepalive (Messaging App)
-        continue-on-error: true
         env:
           URL: '${{ secrets.SUPABASE_MESSAGING_URL }}'
           KEY: '${{ secrets.SUPABASE_MESSAGING_SERVICE_ROLE_KEY }}'
@@ -16,18 +15,19 @@ jobs:
         run: |
           set -euxo pipefail
 
-          curl -fsS "$URL/rest/v1/keepalive_public?select=id&limit=1" \
+          echo "Supabase host: $(echo "$URL" | sed -E 's#https?://([^/]+).*#\1#')"
+
+          curl -vfsS "$URL/rest/v1/keepalive_public?select=id&limit=1" \
             -H "apikey: $ANON" \
             -H "Authorization: Bearer $ANON"
 
-          curl -fsS -X POST "$URL/rest/v1/keepalive_log" \
+          curl -vfsS -X POST "$URL/rest/v1/keepalive_log" \
             -H "apikey: $KEY" \
             -H "Authorization: Bearer $KEY" \
             -H "Content-Type: application/json" \
             -H "Prefer: return=minimal" \
             --data '[{}]'
       - name: Keepalive (File Uploader)
-        continue-on-error: true
         env:
           URL: '${{ secrets.FILEUP_URL }}'
           KEY: '${{ secrets.FILEUP_SERVICE_ROLE_KEY }}'
@@ -35,11 +35,13 @@ jobs:
         run: |
           set -euxo pipefail
 
+          echo "Supabase host: $(echo "$URL" | sed -E 's#https?://([^/]+).*#\1#')"
+
           curl -fsS "$URL/rest/v1/keepalive_public?select=id&limit=1" \
             -H "apikey: $ANON" \
             -H "Authorization: Bearer $ANON"
 
-          curl -fsS -X POST "$URL/rest/v1/keepalive_log" \
+          curl -vfsS -X POST "$URL/rest/v1/keepalive_log" \
             -H "apikey: $KEY" \
             -H "Authorization: Bearer $KEY" \
             -H "Content-Type: application/json" \
