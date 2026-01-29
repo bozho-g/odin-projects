@@ -1,85 +1,97 @@
 name: Supabase Keepalive
 'on':
   schedule:
-    - cron: 17 3 */3 * *
+    - cron: 17 3 * * *
   workflow_dispatch: {}
 jobs:
   keepalive:
     runs-on: ubuntu-latest
     steps:
-      - name: Keepalive (Project 1)
+      - name: Keepalive (Messaging App)
         continue-on-error: true
         env:
-          URL: '${{ secrets.SUPABASE1_URL }}'
-          KEY: '${{ secrets.SUPABASE1_SERVICE_ROLE_KEY }}'
+          URL: '${{ secrets.SUPABASE_MESSAGING_URL }}'
+          KEY: '${{ secrets.SUPABASE_MESSAGING_SERVICE_ROLE_KEY }}'
+          ANON: '${{ secrets.SUPABASE_MESSAGING_ANON_KEY }}'
         run: |
-          set -e
-          curl -sS -X POST "$URL/rest/v1/keepalive_log" \
+          set -euxo pipefail
+
+          curl -fsS "$URL/rest/v1/keepalive_public?select=id&limit=1" \
+            -H "apikey: $ANON" \
+            -H "Authorization: Bearer $ANON"
+
+          curl -fsS -X POST "$URL/rest/v1/keepalive_log" \
             -H "apikey: $KEY" \
             -H "Authorization: Bearer $KEY" \
             -H "Content-Type: application/json" \
             -H "Prefer: return=minimal" \
             --data '[{}]'
-      - name: Keepalive (Project 2)
+      - name: Keepalive (File Uploader)
         continue-on-error: true
         env:
-          URL: '${{ secrets.SUPABASE2_URL }}'
-          KEY: '${{ secrets.SUPABASE2_SERVICE_ROLE_KEY }}'
+          URL: '${{ secrets.FILEUP_URL }}'
+          KEY: '${{ secrets.FILEUP_SERVICE_ROLE_KEY }}'
+          ANON: '${{ secrets.FILEUP_ANON_KEY }}'
         run: |
-          set -e
-          curl -sS -X POST "$URL/rest/v1/keepalive_log" \
+          set -euxo pipefail
+
+          curl -fsS "$URL/rest/v1/keepalive_public?select=id&limit=1" \
+            -H "apikey: $ANON" \
+            -H "Authorization: Bearer $ANON"
+
+          curl -fsS -X POST "$URL/rest/v1/keepalive_log" \
             -H "apikey: $KEY" \
             -H "Authorization: Bearer $KEY" \
             -H "Content-Type: application/json" \
             -H "Prefer: return=minimal" \
             --data '[{}]'
-      - name: Keepalive (Project 3)
-        continue-on-error: true
-        env:
-          URL: ${{ secrets.SUPABASE3_URL }}
-          KEY: ${{ secrets.SUPABASE3_SERVICE_ROLE_KEY }}
-        run: |
-          set -euo pipefail
+      # - name: Keepalive (Project 3)
+      #   continue-on-error: true
+      #   env:
+      #     URL: ${{ secrets.SUPABASE3_URL }}
+      #     KEY: ${{ secrets.SUPABASE3_SERVICE_ROLE_KEY }}
+      #   run: |
+      #     set -euo pipefail
 
-          test -n "${URL:-}" || { echo "SUPABASE3_URL is EMPTY (bad/missing secret)"; exit 1; }
-          test -n "${KEY:-}" || { echo "SUPABASE3_SERVICE_ROLE_KEY is EMPTY (bad/missing secret)"; exit 1; }
+      #     test -n "${URL:-}" || { echo "SUPABASE3_URL is EMPTY (bad/missing secret)"; exit 1; }
+      #     test -n "${KEY:-}" || { echo "SUPABASE3_SERVICE_ROLE_KEY is EMPTY (bad/missing secret)"; exit 1; }
 
-          body="$(mktemp)"
-          http="$(curl --fail-with-body -sS -o "$body" -w "%{http_code}" \
-            -X POST "$URL/rest/v1/keepalive_log" \
-            -H "apikey: $KEY" \
-            -H "Authorization: Bearer $KEY" \
-            -H "Content-Type: application/json" \
-            --data '{}' )" || {
-              echo "Project 3 FAILED"
-              echo "Response:"
-              cat "$body"
-              exit 1
-            }
+      #     body="$(mktemp)"
+      #     http="$(curl --fail-with-body -sS -o "$body" -w "%{http_code}" \
+      #       -X POST "$URL/rest/v1/keepalive_log" \
+      #       -H "apikey: $KEY" \
+      #       -H "Authorization: Bearer $KEY" \
+      #       -H "Content-Type: application/json" \
+      #       --data '{}' )" || {
+      #         echo "Project 3 FAILED"
+      #         echo "Response:"
+      #         cat "$body"
+      #         exit 1
+      #       }
 
-          echo "Project 3 OK: HTTP $http"
-      - name: Keepalive (Project 4)
-        continue-on-error: true
-        env:
-          URL: ${{ secrets.SUPABASE4_URL }}
-          KEY: ${{ secrets.SUPABASE4_SERVICE_ROLE_KEY }}
-        run: |
-          set -euo pipefail
+      #     echo "Project 3 OK: HTTP $http"
+      # - name: Keepalive (Project 4)
+      #   continue-on-error: true
+      #   env:
+      #     URL: ${{ secrets.SUPABASE4_URL }}
+      #     KEY: ${{ secrets.SUPABASE4_SERVICE_ROLE_KEY }}
+      #   run: |
+      #     set -euo pipefail
 
-          test -n "${URL:-}" || { echo "SUPABASE4_URL is EMPTY (bad/missing secret)"; exit 1; }
-          test -n "${KEY:-}" || { echo "SUPABASE4_SERVICE_ROLE_KEY is EMPTY (bad/missing secret)"; exit 1; }
+      #     test -n "${URL:-}" || { echo "SUPABASE4_URL is EMPTY (bad/missing secret)"; exit 1; }
+      #     test -n "${KEY:-}" || { echo "SUPABASE4_SERVICE_ROLE_KEY is EMPTY (bad/missing secret)"; exit 1; }
 
-          body="$(mktemp)"
-          http="$(curl --fail-with-body -sS -o "$body" -w "%{http_code}" \
-            -X POST "$URL/rest/v1/keepalive_log" \
-            -H "apikey: $KEY" \
-            -H "Authorization: Bearer $KEY" \
-            -H "Content-Type: application/json" \
-            --data '{}' )" || {
-              echo "Project 4 FAILED"
-              echo "Response:"
-              cat "$body"
-              exit 1
-            }
+      #     body="$(mktemp)"
+      #     http="$(curl --fail-with-body -sS -o "$body" -w "%{http_code}" \
+      #       -X POST "$URL/rest/v1/keepalive_log" \
+      #       -H "apikey: $KEY" \
+      #       -H "Authorization: Bearer $KEY" \
+      #       -H "Content-Type: application/json" \
+      #       --data '{}' )" || {
+      #         echo "Project 4 FAILED"
+      #         echo "Response:"
+      #         cat "$body"
+      #         exit 1
+      #       }
 
-          echo "Project 4 OK: HTTP $http"
+      #     echo "Project 4 OK: HTTP $http"
