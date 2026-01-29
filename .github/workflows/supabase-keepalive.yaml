@@ -17,7 +17,7 @@ jobs:
 
           echo "Supabase host: $(echo "$URL" | sed -E 's#https?://([^/]+).*#\1#')"
 
-          curl -vfsS "$URL/rest/v1/keepalive_public?select=id&limit=1" \
+          curl -vfsS "$URL/rest/v1/keepalive_log?select=id&limit=1" \
             -H "apikey: $ANON" \
             -H "Authorization: Bearer $ANON"
 
@@ -37,7 +37,7 @@ jobs:
 
           echo "Supabase host: $(echo "$URL" | sed -E 's#https?://([^/]+).*#\1#')"
 
-          curl -fsS "$URL/rest/v1/keepalive_public?select=id&limit=1" \
+          curl -vfsS "$URL/rest/v1/keepalive_log?select=id&limit=1" \
             -H "apikey: $ANON" \
             -H "Authorization: Bearer $ANON"
 
