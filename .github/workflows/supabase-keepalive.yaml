@@ -1,7 +1,7 @@
 name: Supabase Keepalive
 'on':
   schedule:
-    - cron: 17 3 * * *
+    - cron: 17 3,15 * * *
   workflow_dispatch: {}
 jobs:
   keepalive:
@@ -29,9 +29,9 @@ jobs:
             --data '[{}]'
       - name: Keepalive (File Uploader)
         env:
-          URL: '${{ secrets.FILEUP_URL }}'
-          KEY: '${{ secrets.FILEUP_SERVICE_ROLE_KEY }}'
-          ANON: '${{ secrets.FILEUP_ANON_KEY }}'
+          URL: '${{ secrets.SUPABASE_FILEUP_URL }}'
+          KEY: '${{ secrets.SUPABASE_FILEUP_SERVICE_ROLE_KEY }}'
+          ANON: '${{ secrets.SUPABASE_FILEUP_ANON_KEY }}'
         run: |
           set -euxo pipefail
 
@@ -47,53 +47,43 @@ jobs:
             -H "Content-Type: application/json" \
             -H "Prefer: return=minimal" \
             --data '[{}]'
-      # - name: Keepalive (Project 3)
-      #   continue-on-error: true
-      #   env:
-      #     URL: ${{ secrets.SUPABASE3_URL }}
-      #     KEY: ${{ secrets.SUPABASE3_SERVICE_ROLE_KEY }}
-      #   run: |
-      #     set -euo pipefail
+      - name: Keepalive (Inventory App)
+        env:
+          URL: '${{ secrets.SUPABASE_INVENTORY_URL }}'
+          KEY: '${{ secrets.SUPABASE_INVENTORY_SERVICE_ROLE_KEY }}'
+          ANON: '${{ secrets.SUPABASE_INVENTORY_ANON_KEY }}'
+        run: |
+          set -euxo pipefail
 
-      #     test -n "${URL:-}" || { echo "SUPABASE3_URL is EMPTY (bad/missing secret)"; exit 1; }
-      #     test -n "${KEY:-}" || { echo "SUPABASE3_SERVICE_ROLE_KEY is EMPTY (bad/missing secret)"; exit 1; }
+          echo "Supabase host: $(echo "$URL" | sed -E 's#https?://([^/]+).*#\1#')"
 
-      #     body="$(mktemp)"
-      #     http="$(curl --fail-with-body -sS -o "$body" -w "%{http_code}" \
-      #       -X POST "$URL/rest/v1/keepalive_log" \
-      #       -H "apikey: $KEY" \
-      #       -H "Authorization: Bearer $KEY" \
-      #       -H "Content-Type: application/json" \
-      #       --data '{}' )" || {
-      #         echo "Project 3 FAILED"
-      #         echo "Response:"
-      #         cat "$body"
-      #         exit 1
-      #       }
+          curl -vfsS "$URL/rest/v1/keepalive_log?select=id&limit=1" \
+            -H "apikey: $ANON" \
+            -H "Authorization: Bearer $ANON"
 
-      #     echo "Project 3 OK: HTTP $http"
-      # - name: Keepalive (Project 4)
-      #   continue-on-error: true
-      #   env:
-      #     URL: ${{ secrets.SUPABASE4_URL }}
-      #     KEY: ${{ secrets.SUPABASE4_SERVICE_ROLE_KEY }}
-      #   run: |
-      #     set -euo pipefail
+          curl -vfsS -X POST "$URL/rest/v1/keepalive_log" \
+            -H "apikey: $KEY" \
+            -H "Authorization: Bearer $KEY" \
+            -H "Content-Type: application/json" \
+            -H "Prefer: return=minimal" \
+            --data '[{}]'
+      - name: Keepalive (Messaging Board)
+        env:
+          URL: '${{ secrets.SUPABASE_BOARD_URL }}'
+          KEY: '${{ secrets.SUPABASE_BOARD_SERVICE_ROLE_KEY }}'
+          ANON: '${{ secrets.SUPABASE_BOARD_ANON_KEY }}'
+        run: |
+          set -euxo pipefail
 
-      #     test -n "${URL:-}" || { echo "SUPABASE4_URL is EMPTY (bad/missing secret)"; exit 1; }
-      #     test -n "${KEY:-}" || { echo "SUPABASE4_SERVICE_ROLE_KEY is EMPTY (bad/missing secret)"; exit 1; }
+          echo "Supabase host: $(echo "$URL" | sed -E 's#https?://([^/]+).*#\1#')"
 
-      #     body="$(mktemp)"
-      #     http="$(curl --fail-with-body -sS -o "$body" -w "%{http_code}" \
-      #       -X POST "$URL/rest/v1/keepalive_log" \
-      #       -H "apikey: $KEY" \
-      #       -H "Authorization: Bearer $KEY" \
-      #       -H "Content-Type: application/json" \
-      #       --data '{}' )" || {
-      #         echo "Project 4 FAILED"
-      #         echo "Response:"
-      #         cat "$body"
-      #         exit 1
-      #       }
+          curl -vfsS "$URL/rest/v1/keepalive_log?select=id&limit=1" \
+            -H "apikey: $ANON" \
+            -H "Authorization: Bearer $ANON"
 
-      #     echo "Project 4 OK: HTTP $http"
+          curl -vfsS -X POST "$URL/rest/v1/keepalive_log" \
+            -H "apikey: $KEY" \
+            -H "Authorization: Bearer $KEY" \
+            -H "Content-Type: application/json" \
+            -H "Prefer: return=minimal" \
+            --data '[{}]'
