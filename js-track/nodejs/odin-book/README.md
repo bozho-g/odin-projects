@@ -1,5 +1,8 @@
 # Social Platform
 
+## Live Demo
+[Live Demo Link](https://odin-book-frontend-three.vercel.app/)
+
 ## Description
 A social platform built with React and Node.js, featuring user authentication, protected routes, and CRUD operations. Users can sign up, create and like posts and comments, follow other users and upload images. Database is hosted on Neon and images are stored on Cloudinary.
 
@@ -19,9 +22,6 @@ A social platform built with React and Node.js, featuring user authentication, p
 - File uploads
 - Follow system
 - Like system
-
-## Live Demo
-[Live Demo Link](https://odin-book-frontend-three.vercel.app/)
 
 ## Screenshots
 
