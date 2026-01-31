@@ -55,8 +55,9 @@
 }
 
 .postImage {
+    max-width: 95%;
     max-height: 400px;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 8px;
     margin-top: 0.5rem;
 }
