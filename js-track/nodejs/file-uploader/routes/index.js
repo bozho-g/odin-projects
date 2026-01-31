@@ -253,8 +253,9 @@ function checkFiles(req, res, next) {
 }
 
 function checkFileSizes(files) {
+  const MAX_SIZE_BYTES = 4.5 * 1024 * 1024;
   const totalSize = files.reduce((accumulator, currentValue) => accumulator + currentValue.size, 0);
-  return totalSize <= 50000000;
+  return totalSize <= MAX_SIZE_BYTES;
 }
 
 module.exports = router;

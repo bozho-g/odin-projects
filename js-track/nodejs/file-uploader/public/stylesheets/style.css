@@ -455,8 +455,12 @@ input[type="file"] {
 }
 
 .item-name {
+  display: inline-block;
   font-size: 1.2rem;
   color: var(--foreground);
+  max-width: 80%;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .category-title {
@@ -717,6 +721,8 @@ input[type="radio"] {
 
 .file-info p {
   margin-bottom: 0.4rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .item-actions {

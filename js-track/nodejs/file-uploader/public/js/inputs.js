@@ -1,5 +1,7 @@
 import { showErrorPopup, toggleLoadingOverlay } from "./popups.js";
 
+const MAX_SIZE_MB = 4.5;
+
 const fileInput = document.getElementById('file');
 const folderInput = document.getElementById('folder');
 
@@ -13,8 +15,8 @@ function processFilesForms(e) {
     const totalSize = fileArray.reduce(
         (accumulator, currentValue) => accumulator + currentValue.size, 0);
 
-    if (totalSize > 50000000) {
-        showErrorPopup('File Size Exceeded', 'Total upload size exceeds 50MB limit.');
+    if (totalSize > MAX_SIZE_MB * 1024 * 1024) {
+        showErrorPopup('File Size Exceeded', `Total upload size exceeds ${MAX_SIZE_MB}MB limit.`);
         return;
     }
 
@@ -28,9 +30,18 @@ function processFilesForms(e) {
     })
         .then(async response => {
             if (!response.ok) {
-                const errorData = await response.json();
+                let errorMessage;
+                const contentType = response.headers.get('content-type');
 
-                throw new Error(errorData.message || 'Upload failed');
+                if (contentType && contentType.includes('application/json')) {
+                    const data = await response.json();
+                    errorMessage = data.error || data.message || 'Upload failed';
+                } else {
+                    const text = await response.text();
+                    errorMessage = `Server error: ${response.status} ${response.statusText}`;
+                }
+
+                throw new Error(errorMessage);
             }
 
             window.location.reload();
